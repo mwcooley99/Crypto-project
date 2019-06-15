@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cryptocurrency</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>    
+  <!--CSS Link-->
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Cryptocurrency</h1>
+    </div>
+    <!-- Navigation -->
+    <div class="navigation">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!----<a class="navbar-brand" style="background-color: #0BADA6;" href="Landing.html">Latitude</a>-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+            aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Charts
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="Top_10.html">Top 10 Cryptocurrency</a>
+                    <a class="dropdown-item" href="Price.html">Price</a>
+                    <a class="dropdown-item" href="Volumn.html">Volumn</a>
+                    <a class="dropdown-item" href="Trend.html">Trend</a>
+                    <a class="dropdown-item" href="Tweet_Influence.html">Influence</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Comparisons.html">Comparison</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Data.html">Data</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+    </div>
+     <!-- Content -->
+    
+    <div class="row">
+        <div class="col-md-9">
+            <div class = "box">
+                <h2 class="table_title">Data</h2>
+                <hr>
+                <p>The following table includes all of the data used for plotting charts during this project.</p>
+                <table class="table">
+                    <thead><tr><th title="Field #1">Name</th>
+                    <th title="Field #2">Symbol</th>
+                    <th title="Field #3">Date</th>
+                    <th title="Field #4">Year</th>
+                    <th title="Field #5">Open</th>
+                    <th title="Field #6">High</th>
+                    <th title="Field #7">Low</th>
+                    <th title="Field #8">Close</th>
+                    <th title="Field #9">Market</th>
+                    <th title="Field #10">Close_ratio</th>
+                    <th title="Field #11">Spread</th>
+                    </tr></thead>
+                    <tbody><tr>
+                    
+
+                    </tr>
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="select">
+                <h2>Select Cryptocurrency Name:</h2>
+                <select id="selDataset" onchange="optionChanged(this.value)"></select>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<!-- Footer  -->
+<footer>
+    <div class="footer">Copyright &copy; Project 2 Cryptocurrency 2019</div>
+</footer>
+
+<!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="{{ url_for(filename='app.js') }}"></script>
+<!-- API key -->
+<script type="text/javascript" src="config.js"></script>
+<!-- Our JS -->
+<script type="text/javascript" src="logic.js"></script>
+</html>
