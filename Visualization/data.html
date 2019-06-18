@@ -12,6 +12,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>    
   <!--CSS Link-->
   <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- AJAX jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -19,7 +21,6 @@
     <div class="header">
         <h1>Cryptocurrency Data</h1>
     </div>
-    <!-- Navigation -->
     <!-- Navigation -->
     <div class="navigation">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,11 +56,30 @@
           </div>
         </nav>
     </div>
-     <!-- Content -->
+    <div class="container">
+      <br>
+      <p>The following table includes all of the data used for plotting charts during this project.</p>
+        <div class="table-responsive"> 
+         <br />
+         <div align="center">
+          <button type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
+         </div>
+         <br />
+         <table style="width: 100%"; id="crypto_table">
+         </table>
+        </div>
+    </div>
+     <!-- Content style="overflow-x:100%;" -->
     
-    <div class="row">
+    <!---<div class="row">
         <div class="col-md-9">
+            <br />  
             <div class = "box">
+                <button type = "button" name="load_data" id="load_data" class ="btn btn-info">Load Data</button>
+            </div>
+            <br />  
+            <div id="crypto_data">
+            </div>  
                 <h2 class="table_title">Data</h2>
                 <hr>
                 <p>The following table includes all of the data used for plotting charts during this project.</p>
@@ -76,11 +96,7 @@
                     <th title="Field #10">Close_ratio</th>
                     <th title="Field #11">Spread</th>
                     </tr></thead>
-                    <tbody><tr>
-                    
-
-                    </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table> 
             </div>
         </div>
@@ -90,7 +106,7 @@
                 <select id="selDataset" onchange="optionChanged(this.value)"></select>
             </div>
         </div>
-    </div>
+    </div>-->
     
 </body>
 <!-- Footer  -->
@@ -106,4 +122,42 @@
 <script type="text/javascript" src="config.js"></script>
 <!-- Our JS -->
 <script type="text/javascript" src="logic.js"></script>
+<script type="text/javascript" src="static/js/app.js"></script>
 </html>
+
+<script>
+  $(document).ready(function(){
+    $('#load_data').click(function(){
+    $.ajax({
+      url:"../crypto.csv",
+      dataType:"text",
+      success:function(data)
+      {
+      var crypto_data = data.split(/\r?\n|\r/);
+      var table_data = '<table class="table table-bordered table-striped">';
+      for(var count = 0; count<crypto_data.length; count++)
+      {
+        var cell_data = crypto_data[count].split(",");
+        table_data += '<tr>';
+        for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+        {
+        if(count === 0)
+        {
+          table_data += '<th>'+cell_data[cell_count]+'</th>';
+        }
+        else
+        {
+          table_data += '<td>'+cell_data[cell_count]+'</td>';
+        }
+        }
+        table_data += '</tr>';
+      }
+      table_data += '</table>';
+      $('#crypto_table').html(table_data);
+      }
+    });
+    });
+    
+  });
+</script>
+    
