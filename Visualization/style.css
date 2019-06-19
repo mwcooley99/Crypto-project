@@ -44,7 +44,6 @@ td{
   white-space: nowrap;  
 }
 
-
 tr:nth-child(even) {background-color:lightgray;}
 
 .header {
@@ -132,10 +131,14 @@ footer{
     padding-top: 5px;   
 }
 
-@media (max-width: 550px) {
+@media (max-width: 960px) {
     .navbar-expand-lg navbar-light bg-light {
       padding: 10px;
     }
+
+    .container {
+      max-width: 100%;
+  }
   
     .box {
       margin-right: 30px;
@@ -149,4 +152,28 @@ footer{
     #navbarSupportedContent {
       visibility: visible;
     }
+}
+
+@media (min-width: 1200px){
+  .container {
+    max-width: 100%;
   }
+}
+@media (min-width: 992px){
+  .container {
+    max-width: 100%;
+  }
+}
+@media (min-width: 768px){
+  .container {
+    max-width: 100%;
+  }
+}
+@media (min-width: 576px){
+  .container {
+    max-width: 100%;
+  }
+}
+.table-responsive {
+  max-height: 400px;
+}
