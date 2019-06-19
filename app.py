@@ -1,6 +1,11 @@
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
+from helpers import myconverter
+
+import json
+import jsonify
+
 from sqlalchemy import inspect
 from sqlalchemy.ext.automap import automap_base
 
@@ -52,23 +57,20 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
-    result = db.engine.execute("SHOW columns FROM top_10_coins")
-    headers = [column[0] for column in result.fetchall()]
 
-    # query = db.engine.execute("SELECT * FROM top_10_coins")
-    # j = [dict(zip(headers, row)) for row in query.fetchall()]
-    # print(j[0])
 
-    return str(headers)
+    return "Hello World"
 
 
 @app.route("/hello")
-def hello():
-    query = db.engine.execute("SELECT * from top_10_coins LIMIT 1000")
-    j = [row for row in query.fetchall()]
+def crypto_top_10():
+    result = db.engine.execute("SHOW columns FROM top_10_coins")
+    headers = [column[0] for column in result.fetchall()]
 
-    return str(j)
+    query = db.engine.execute("SELECT * FROM top_10_coins LIMIT 10")
+    j = [dict(zip(headers, row)) for row in query.fetchall()]
 
+    return json.dumps(j, default=myconverter)
 
 if __name__ == '__main__':
     app.run()
