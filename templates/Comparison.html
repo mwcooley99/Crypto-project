@@ -1,110 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
+{% block content %}
 
-<head>
-  <meta charset="UTF-8">
-  <title>Cryptocurrency</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>    
-  <!--CSS Link-->
-  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-</head>
-
-<body>
-    <!-- Header -->
-    <div class="header">
-        <h1>Cryptocurrency Comparisons</h1>
-    </div>
-    <!-- Navigation -->
-    <div class="navigation">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <!----<a class="navbar-brand" style="background-color: #0BADA6;" href="Landing.html">Latitude</a>-->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" 
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-            aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="Summary.html">Summary</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Crypto
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Trend.html">Overall Trends</a>
-                    <a class="dropdown-item" href="Comparison.html">Crypto Comparisons</a>
-                    <a class="dropdown-item" href="Influences.html">Influences</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Data.html">Data</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="members.html">Team Members</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-    </div>
-     <!-- container-->
-     <div class="container">
-        <div class="row">
-          <!-- Left Session -->
-          <div class="col-lg-6">
-                <div class="box">
-                <br>
-                <h4 class="subtitle">Chart C</h4>
-                <br>
-                <br>
-                <img src="../static/images/button.jpg" alt="button" width="500" height="300"></img>
-                <br>
-                <br>
-                <p id ="text">"1. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-                <p id ="text">"2. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-                <p id ="text">"3. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-                <p id ="text">"4. A cryptocurrency (or crypto currency) is a digital asset designed to"</p> 
-                </div>
-         </div>
-          <!-- Right Session -->
-          <div class="col-lg-6">
-                <div class="box">
-                  <br>
-                  <h5 class="subtitle">Chart D</h5>
-                  <br>
-                  <br>
-                  <img src="../static/images/button.jpg" alt="button" width="500" height="300"></img>
-                  <br>
-                  <br>
-                  <p id ="text">"1. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-                  <p id ="text">"2. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-                  <p id ="text">"3. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-                  <p id ="text">"4. A cryptocurrency (or crypto currency) is a digital asset designed to"</p> 
-              </div>
-          </div>
-    
+<div class="row">
+  <!-- Left Session -->
+  <div class="col-lg-6">
+        <div class="box">
+        <br>
+        <h4 class="subtitle">Chart C</h4>
+        <br>
+        <br>
+        <img src="../static/images/button.jpg" alt="button" width="500" height="300"></img>
+        <br>
+        <br>
+        <p id ="text">"1. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+        <p id ="text">"2. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+        <p id ="text">"3. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+        <p id ="text">"4. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
         </div>
-    </div>
-    
-</body>
-<!-- Footer  -->
-<footer>
-    <div class="footer">Copyright &copy; Project 2 Cryptocurrency 2019</div>
-</footer>
+ </div>
+  <!-- Right Session -->
+  <div class="col-lg-6">
+        <div class="box">
+          <br>
+          <h5 class="subtitle">Chart D</h5>
+          <br>
+          <br>
+          <img src="../static/images/button.jpg" alt="button" width="500" height="300"></img>
+          <br>
+          <br>
+          <p id ="text">"1. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+          <p id ="text">"2. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+          <p id ="text">"3. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+          <p id ="text">"4. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+      </div>
+  </div>
 
-<!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="{{ url_for(filename='app.js') }}"></script>
-<!-- API key -->
-<script type="text/javascript" src="../static/js/config.js"></script>
-<!-- Our JS -->
-<script type="text/javascript" src="logic.js"></script>
-</html>
+</div>
+
+{% endblock %}

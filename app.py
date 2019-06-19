@@ -60,6 +60,31 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/comparison")
+def comparison():
+    return render_template("Comparison.html")
+
+
+@app.route("/data")
+def data():
+    return render_template("data.html")
+
+
+@app.route("/influencers")
+def influencers():
+    return render_template("Influencers.html")
+
+
+@app.route("/members")
+def members():
+    return render_template("members.html")
+
+
+@app.route("/trend")
+def trend():
+    return render_template("Trend.html")
+
+
 @app.route("/hello")
 def crypto_top_10():
     result = db.engine.execute("SHOW columns FROM top_10_coins")

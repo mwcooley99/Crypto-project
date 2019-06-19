@@ -6,6 +6,12 @@ html,body{
     
 }
 
+.container {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+
+
 .navbar-brand{
     color: white;
     margin-left: 30px; 
@@ -117,19 +123,19 @@ h3{
 }
 
 footer{
-    background-color:grey; 
+    background-color:grey;
     border-top-color:lightseagreen;
-    border-top-style: solid; 
-    border-top-width: 5px; 
-    color: white; 
+    border-top-style: solid;
+    border-top-width: 5px;
+    color: white;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 18px; 
-    text-align: center; 
+    font-size: 18px;
+    text-align: center;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    padding-top: 5px;   
+    padding-top: 5px;
 }
 
 @media (max-width: 550px) {
