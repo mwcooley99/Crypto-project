@@ -57,9 +57,7 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
-
-
-    return "Hello World"
+    return render_template("index.html")
 
 
 @app.route("/hello")
@@ -71,6 +69,7 @@ def crypto_top_10():
     j = [dict(zip(headers, row)) for row in query.fetchall()]
 
     return json.dumps(j, default=myconverter)
+
 
 if __name__ == '__main__':
     app.run()

@@ -1,120 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Cryptocurrency</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>    
-  <!--CSS Link-->
-  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-</head>
-
-<body>
-    <!-- Header -->
-    <div class="header">
-        <h1>Cryptocurrency Analysis</h1>
-    </div>
-    <!-- Navigation -->
-    <div class="navigation">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <!----<a class="navbar-brand" style="background-color: #0BADA6;" href="Landing.html">Latitude</a>-->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" 
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-            aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="Summary.html">Summary</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Crypto
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Trend.html">Overall Trends</a>
-                    <a class="dropdown-item" href="Comparisons.html">Crypto Comparisons</a>
-                    <a class="dropdown-item" href="Influences.html">Influences</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Data.html">Data</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="members.html">Team Members</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-    </div>
-     <!-- container (Summary Section) -->
-    <div id = "summary" class="container text-center">
-        <h3>Summary</h3>
-        <p>
-            <em>What is the cryptocurrency?</em>
-        </p>
-        <p>"A cryptocurrency (or crypto currency) is a digital asset designed to 
-            work as a medium of exchange that uses strong cryptography to secure 
-            financial transactions, control the creation of additional units, and 
-            verify the transfer of assets.Cryptocurrencies use decentralized 
-            control as opposed to centralized digital currency and central banking systems.
-            A cryptocurrency (or crypto currency) is a digital asset designed to 
-            work as a medium of exchange that uses strong cryptography to secure 
-            financial transactions, control the creation of additional units, and 
-            verify the transfer of assets.Cryptocurrencies use decentralized 
-            control as opposed to centralized digital currency and central banking systems."
-        </p>
-        <br>
-        <div class = "row">
-            <div class = "col-md-4">
-                <p class= "subtitle" class = "text-center">
-                     <strong>Button 1</strong>
-                </p>
-                <br>
-                <a hre="">
-                    <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
-                </a>
-            </div>
-            <div class = "col-md-4">
-                <p class= "subtitle" class = "text-center">
-                    <strong>Button 2</strong>
-                </p>
-                <br>
-                <a hre="" data-toggle="collapse">
-                    <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
-                </a>
-            </div>
-            <div class = "col-md-4">
-                <p class= "subtitle" class = "text-center">
-                    <strong>Button 3</strong>
-                </p>
-                <br>
-                <a hre="" data-toggle="collapse">
-                    <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
-                </a>
-            </div>
+{% extends "layout.html" %}
+{% block content %}
+ <!-- container (Summary Section) -->
+<div id = "summary" class="container text-center">
+    <h3>Summary</h3>
+    <p>
+        <em>What is the cryptocurrency?</em>
+    </p>
+    <p>"A cryptocurrency (or crypto currency) is a digital asset designed to
+        work as a medium of exchange that uses strong cryptography to secure
+        financial transactions, control the creation of additional units, and
+        verify the transfer of assets.Cryptocurrencies use decentralized
+        control as opposed to centralized digital currency and central banking systems.
+        A cryptocurrency (or crypto currency) is a digital asset designed to
+        work as a medium of exchange that uses strong cryptography to secure
+        financial transactions, control the creation of additional units, and
+        verify the transfer of assets.Cryptocurrencies use decentralized
+        control as opposed to centralized digital currency and central banking systems."
+    </p>
+    <br>
+    <div class = "row">
+        <div class = "col-md-4">
+            <p class= "subtitle" class = "text-center">
+                 <strong>Button 1</strong>
+            </p>
+            <br>
+            <a hre="">
+                <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
+            </a>
+        </div>
+        <div class = "col-md-4">
+            <p class= "subtitle" class = "text-center">
+                <strong>Button 2</strong>
+            </p>
+            <br>
+            <a hre="" data-toggle="collapse">
+                <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
+            </a>
+        </div>
+        <div class = "col-md-4">
+            <p class= "subtitle" class = "text-center">
+                <strong>Button 3</strong>
+            </p>
+            <br>
+            <a hre="" data-toggle="collapse">
+                <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
+            </a>
         </div>
     </div>
-    
-</body>
-<!-- Footer  -->
-<footer>
-    <div class="footer">Copyright &copy; Project 2 Cryptocurrency 2019</div>
-</footer>
-
-<!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="{{ url_for(filename='app.js') }}"></script>
-<!-- API key -->
-<script type="text/javascript" src="../static/js/config.js"></script>
-<!-- Our JS -->
-<script type="text/javascript" src="logic.js"></script>
-</html>
+</div>
+{% endblock %}
