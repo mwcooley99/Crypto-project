@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 from helpers import myconverter
 
+from datetime import datetime
+
 import json
 import jsonify
 
@@ -85,15 +87,42 @@ def trend():
     return render_template("Trend.html")
 
 
-@app.route("/hello")
+@app.route("/crypto_top_10")
 def crypto_top_10():
     result = db.engine.execute("SHOW columns FROM top_10_coins")
     headers = [column[0] for column in result.fetchall()]
 
-    query = db.engine.execute("SELECT * FROM top_10_coins LIMIT 10")
+    query = db.engine.execute("SELECT * "
+                              "FROM top_10_coins ")
     j = [dict(zip(headers, row)) for row in query.fetchall()]
 
     return json.dumps(j, default=myconverter)
+
+@app.route("/data_string")
+def data_string():
+    delimter = ","
+    end_of_line = "\n"
+
+    result = db.engine.execute("SHOW columns FROM top_10_coins")
+    headers = [column[0] for column in result.fetchall()]
+    result_string = delimter.join(headers)
+    result_string += end_of_line
+
+    query = db.engine.execute("SELECT * "
+                              "FROM top_10_coins LIMIT 10")
+    # data = [delimter.join(row) for row in query.fetchall()]
+    data = ""
+    for row in query.fetchall():
+        row = list(row)
+
+        row[2] = datetime.strftime(row[2], "%Y-%m-%d")
+        row = [str(i) for i in row]
+        data += delimter.join(row)
+        data += "\n"
+
+    result_string += data
+
+    return result_string
 
 
 if __name__ == '__main__':
