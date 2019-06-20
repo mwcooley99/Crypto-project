@@ -177,3 +177,22 @@ footer{
 .table-responsive {
   max-height: 400px;
 }
+
+.tooltip{
+  display: none;
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  padding: 2px;
+  font: 11px sans-serif;
+  text-align: center;
+  background: white;
+  color: black;
+  border: 0;
+  border-radius: 10px;
+  border-color: red;
+ }
+
+.svg{
+  background-image: url(./Images/map.jpg);   
+}
