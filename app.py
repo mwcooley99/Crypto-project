@@ -93,7 +93,8 @@ def crypto_top_10():
     headers = [column[0] for column in result.fetchall()]
 
     query = db.engine.execute("SELECT * "
-                              "FROM top_10_coins ")
+                              "FROM top_10_coins "
+                              "WHERE DATE(date) > '2017-01-01'")
     j = [dict(zip(headers, row)) for row in query.fetchall()]
 
     return json.dumps(j, default=myconverter)
@@ -109,7 +110,8 @@ def data_string():
     result_string += end_of_line
 
     query = db.engine.execute("SELECT * "
-                              "FROM top_10_coins LIMIT 10")
+                              "FROM top_10_coins "
+                              "WHERE DATE(date) > '2017-01-01'")
     # data = [delimter.join(row) for row in query.fetchall()]
     data = ""
     for row in query.fetchall():
