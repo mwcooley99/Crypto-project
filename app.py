@@ -97,7 +97,11 @@ def crypto_top_10():
                               "WHERE DATE(date) > '2017-01-01'")
     j = [dict(zip(headers, row)) for row in query.fetchall()]
 
+    with open("data.json", "w") as f:
+        json.dump(j, f, default=myconverter)
+
     return json.dumps(j, default=myconverter)
+
 
 @app.route("/data_string")
 def data_string():
