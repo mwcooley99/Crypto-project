@@ -27,7 +27,7 @@ def index():
 
 @app.route("/comparison")
 def comparison():
-    return render_template("Comparison.html")
+    return render_template("comparison.html")
 
 
 @app.route("/data")
@@ -37,7 +37,7 @@ def data():
 
 @app.route("/influencers")
 def influencers():
-    return render_template("Influencers.html")
+    return render_template("influencers.html")
 
 
 @app.route("/members")
@@ -47,7 +47,7 @@ def members():
 
 @app.route("/trend")
 def trend():
-    return render_template("Trend.html")
+    return render_template("trend.html")
 
 
 @app.route("/crypto_top_10")
