@@ -77,8 +77,7 @@ def crypto_top_10_bubble():
 
     j = [dict(zip(headers, row)) for row in query.fetchall()]
 
-    # with open("data.json", "w") as f:
-    #     json.dump(j, f, default=myconverter)
+
 
     return json.dumps(j, default=myconverter)
 
