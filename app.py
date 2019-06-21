@@ -1,19 +1,13 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-from helpers import myconverter
+from helpers.helpers import myconverter
 
 from datetime import datetime
 
 import json
-import jsonify
 
-from sqlalchemy import inspect
-from sqlalchemy.ext.automap import automap_base
-
-import os
 # from flask_bootstrap import Bootstrap
-import mysql.connector
 
 import os
 
@@ -22,39 +16,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# cnx = mysql.connector.connect(database='heroku_a406bf74b9befa3',
-#                               user=os.getenv('user'),
-#                               password=os.getenv('password'),
-#                               host=os.getenv('host')
-#                               )
-#
-# cursor = cnx.cursor(buffered=True)
-#
-# query = ("SHOW columns FROM top_10_coins")
-# cursor.execute(query)
-# headers = [column[0] for column in cursor.fetchall()]
-#
-# cursor.close()
-# # j = [dict(zip(headers, data) for data in )]
-# cursor = cnx.cursor()
-# query = ("SELECT * FROM top_10_coins")
-# cursor.execute(query)
-# j = [dict(zip(headers, row)) for row in cursor.fetchall()]
-# print(j[0])
-
-# print(cursor)
 
 db = SQLAlchemy(app)
-
-
-# print(db.engine.table_names())
-# Base = automap_base()
-# Base.prepare(db.engine, reflect=True)
-#
-#
-# Crypto = Base.classes.top_10_coins
-# print("*************")
-# db.session.query(Crypto).first()
 
 
 @app.route("/")
@@ -116,7 +79,7 @@ def data_string():
     query = db.engine.execute("SELECT * "
                               "FROM top_10_coins "
                               "WHERE DATE(date) > '2017-01-01'")
-    # data = [delimter.join(row) for row in query.fetchall()]
+
     data = ""
     for row in query.fetchall():
         row = list(row)
