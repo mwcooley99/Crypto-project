@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+ <!-- container (Summary Section) -->
+<div id = "summary" class="text-center">
+    <h3>Summary</h3>
+    <p>
+        <em>What is the cryptocurrency?</em>
+    </p>
+    <p>"A cryptocurrency (or crypto currency) is a digital asset designed to
+        work as a medium of exchange that uses strong cryptography to secure
+        financial transactions, control the creation of additional units, and
+        verify the transfer of assets.Cryptocurrencies use decentralized
+        control as opposed to centralized digital currency and central banking systems.
+        A cryptocurrency (or crypto currency) is a digital asset designed to
+        work as a medium of exchange that uses strong cryptography to secure
+        financial transactions, control the creation of additional units, and
+        verify the transfer of assets.Cryptocurrencies use decentralized
+        control as opposed to centralized digital currency and central banking systems."
+    </p>
+    <br>
+    <div class = "row">
+        <div class = "col-md-4">
+            <p class= "subtitle" class = "text-center">
+                 <strong>Button 1</strong>
+            </p>
+            <br>
+            <a hre="">
+                <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
+            </a>
+        </div>
+        <div class = "col-md-4">
+            <p class= "subtitle" class = "text-center">
+                <strong>Button 2</strong>
+            </p>
+            <br>
+            <a hre="" data-toggle="collapse">
+                <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
+            </a>
+        </div>
+        <div class = "col-md-4">
+            <p class= "subtitle" class = "text-center">
+                <strong>Button 3</strong>
+            </p>
+            <br>
+            <a hre="" data-toggle="collapse">
+                <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

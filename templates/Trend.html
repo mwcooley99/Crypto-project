@@ -11,13 +11,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>    
   <!--CSS Link-->
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 
 <body>
     <!-- Header -->
     <div class="header">
-        <h1>Cryptocurrency Analysis</h1>
+        <h1>Cryptocurrency Overall Trends</h1>
     </div>
     <!-- Navigation -->
     <div class="navigation">
@@ -40,7 +40,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="Trend.html">Overall Trends</a>
-                    <a class="dropdown-item" href="Comparisons.html">Crypto Comparisons</a>
+                    <a class="dropdown-item" href="Comparison.html">Crypto Comparisons</a>
                     <a class="dropdown-item" href="Influences.html">Influences</a>
                   </div>
                 </li>
@@ -54,52 +54,42 @@
             </div>
           </nav>
     </div>
-     <!-- container (Summary Section) -->
-    <div id = "summary" class="container text-center">
-        <h3>Summary</h3>
-        <p>
-            <em>What is the cryptocurrency?<em>
-        </p>
-        <p>"A cryptocurrency (or crypto currency) is a digital asset designed to 
-            work as a medium of exchange that uses strong cryptography to secure 
-            financial transactions, control the creation of additional units, and 
-            verify the transfer of assets.Cryptocurrencies use decentralized 
-            control as opposed to centralized digital currency and central banking systems.
-            A cryptocurrency (or crypto currency) is a digital asset designed to 
-            work as a medium of exchange that uses strong cryptography to secure 
-            financial transactions, control the creation of additional units, and 
-            verify the transfer of assets.Cryptocurrencies use decentralized 
-            control as opposed to centralized digital currency and central banking systems."
-        </p>
-        <br>
-        <div class = "row">
-            <div class = "col-md-4">
-                <p class= "subtitle" class = "text-center">
-                     <strong>Button 1</strong>
-                </p>
+     <!-- container-->
+     <div class="container">
+        <div class="row">
+          <!-- Left Session -->
+          <div class="col-lg-6">
+                <div class="box">
                 <br>
-                <a hre="">
-                    <img src="button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
-                </a>
-            </div>
-            <div class = "col-md-4">
-                <p class= "subtitle" class = "text-center">
-                    <strong>Button 2</strong>
-                </p>
+                <h4 class="subtitle">Chart A</h4>
                 <br>
-                <a hre="" data-toggle="collapse">
-                    <img src="button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
-                </a>
-            </div>
-            <div class = "col-md-4">
-                <p class= "subtitle" class = "text-center">
-                    <strong>Button 3</strong>
-                </p>
                 <br>
-                <a hre="" data-toggle="collapse">
-                    <img src="button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
-                </a>
-            </div>
+                <img src="../static/images/button.jpg" alt="button" width="500" height="300"></img>
+                <br>
+                <br>
+                <p id ="text">"1. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+                <p id ="text">"2. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+                <p id ="text">"3. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+                <p id ="text">"4. A cryptocurrency (or crypto currency) is a digital asset designed to"</p> 
+                </div>
+         </div>
+          <!-- Right Session -->
+          <div class="col-lg-6">
+                <div class="box">
+                  <br>
+                  <h5 class="subtitle">Chart B</h5>
+                  <br>
+                  <br>
+                  <img src="../static/images/button.jpg" alt="button" width="500" height="300"></img>
+                  <br>
+                  <br>
+                  <p id ="text">"1. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+                  <p id ="text">"2. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+                  <p id ="text">"3. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
+                  <p id ="text">"4. A cryptocurrency (or crypto currency) is a digital asset designed to"</p> 
+              </div>
+          </div>
+    
         </div>
     </div>
     
@@ -114,7 +104,7 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="{{ url_for(filename='app.js') }}"></script>
 <!-- API key -->
-<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="../static/js/config.js"></script>
 <!-- Our JS -->
 <script type="text/javascript" src="logic.js"></script>
 </html>
