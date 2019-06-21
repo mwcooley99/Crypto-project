@@ -50,12 +50,12 @@ def trend():
     return render_template("trend.html")
 
 
-@app.route("/crypto_top_10")
-def crypto_top_10():
+@app.route("/crypto_top_10_line")
+def crypto_top_10_line():
     result = db.engine.execute("SHOW columns FROM top_10_coins")
-    headers = [column[0] for column in result.fetchall()]
+    headers = ['close', 'date', 'name']
 
-    query = db.engine.execute("SELECT * "
+    query = db.engine.execute("SELECT close, date, name "
                               "FROM top_10_coins "
                               "WHERE DATE(date) > '2017-01-01'")
     j = [dict(zip(headers, row)) for row in query.fetchall()]
@@ -65,6 +65,22 @@ def crypto_top_10():
 
     return json.dumps(j, default=myconverter)
 
+@app.route("/crypto_top_10_bubble")
+def crypto_top_10_bubble():
+    result = db.engine.execute("SHOW columns FROM top_10_coins")
+    headers = ['name', 'close', 'date', 'full_date', 'volume']
+
+    query = db.engine.execute("SELECT name, close, Month(date), date, AVG(volume) "
+                              "FROM top_10_coins "
+                              "GROUP BY name, Year(date), Month(date) "
+                              "HAVING DATE(`date`) > '2017-01-01'")
+
+    j = [dict(zip(headers, row)) for row in query.fetchall()]
+
+    # with open("data.json", "w") as f:
+    #     json.dump(j, f, default=myconverter)
+
+    return json.dumps(j, default=myconverter)
 
 @app.route("/data_string")
 def data_string():
