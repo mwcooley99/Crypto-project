@@ -202,3 +202,125 @@ footer{
 .svg{
   background-image: url(./Images/map.jpg);   
 }
+.black {
+  stroke: black;
+  fill: none;
+  
+  
+  }
+.bitcoin_legend {
+          color:black;
+          fill:black;
+      }
+  
+.orange {
+      stroke: orange;
+      fill: none;
+      
+      
+      }
+  
+.ethereum_legend {
+          color:orange;
+          fill:orange;
+      }
+  
+ .navyblue {
+          stroke: navy;
+          fill: none;
+          
+          
+      }
+   .litcoin_legend {
+                  color:navy;
+                  fill:navy;
+              }
+          
+.red {
+          stroke: red;
+           fill: none;
+              
+              
+           }
+  .monero_legend {
+                  color:red;
+                  fill:red;
+              }
+          
+  
+ .darkgreen {
+        stroke: darkgreen;
+       fill: none;
+              
+              
+        }
+  
+ .bitcoinCash_legend {
+          color:darkgreen;
+          fill:darkgreen;
+      }
+  
+  
+  .yellowgreen {
+          stroke: yellowgreen;
+          fill: none;
+          
+          
+          }
+  .dash_legend {
+                  color:yellowgreen;
+                  fill:yellowgreen;
+              }
+          
+  .acquamarine {
+              stroke: aquamarine;
+              fill: none;
+              
+              
+              }
+   .bitcoinSv_legend {
+                  color:aquamarine;
+                  fill:aquamarine;
+              }
+          
+  
+   .lightsklyblue {
+                  stroke: lightskyblue;
+                  fill: none;
+                  
+                  
+                  }
+    .eos_legend {
+                     color:lightskyblue;
+                    fill:lightskyblue;
+    }
+                  
+  
+  
+    .darkslategray{
+             stroke: darkslategray;
+           fill: none;
+                      
+                      
+             }
+  
+  .stellar_legend {
+             color:darkslategray;
+              fill:darkslategray;
+                   }
+                  
+  
+ .sandybrown{
+            stroke: sandybrown;
+            fill: none;
+                          
+                          
+               }
+  
+  .cardano_legend {
+                      color:sandybrown;
+                      fill:sandybrown;
+                              }
+                          
+  
+  
