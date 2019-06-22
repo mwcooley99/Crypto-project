@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<br>
+<!---<br>
 <p>The following table includes all of the data used for plotting charts during this project.</p>
 <div class="table-responsive">
  <br />
@@ -10,7 +10,30 @@
  <br />
  <table style="width: 100%"; id="crypto_table">
  </table>
-</div>
+</div>-->
+
+<br>
+    <div class = "row">
+      <div class="col-md-3";align="right">
+        <h2 align="left">Search</h2>                 
+           <div align="left">  
+                <input type="text" name="search" id="search" class="form-control" />  
+           </div>  
+      </div>
+      <div class="col-md-9">
+        <button style = "float: right" type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
+        <br>
+        <br>
+        <p style = "float: right">The following table includes all of the data used for plotting charts during this project.</p>
+      </div>
+    </div>
+
+    <div class="table-responsive";> 
+      <table style="width: 100%"; id="crypto_table">
+      </table>
+    </div>
+      
+  </div>
 
 <script>
   $(document).ready(function(){
@@ -48,5 +71,32 @@
     
   });
 </script>
+
+<script>  
+    $(document).ready(function(){  
+         $('#search').keyup(function(){  
+              search_table($(this).val());  
+         });  
+         function search_table(value){  
+              $('#crypto_table tr').each(function(){  
+                   var found = 'false';  
+                   $(this).each(function(){  
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                        {  
+                             found = 'true';  
+                        }  
+                   });  
+                   if(found == 'true')  
+                   {  
+                        $(this).show();  
+                   }  
+                   else  
+                   {  
+                        $(this).hide();  
+                   }  
+              });  
+         }  
+    });  
+</script>  
 
 {% endblock %}
