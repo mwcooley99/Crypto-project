@@ -1,13 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 from helpers.helpers import myconverter
 
 from datetime import datetime
 
-import json
+import pandas as pd
 
-# from flask_bootstrap import Bootstrap
+import json
 
 import os
 
@@ -15,7 +15,6 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("CLEARDB_DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 
 db = SQLAlchemy(app)
 
@@ -50,6 +49,11 @@ def trend():
     return render_template("trend.html")
 
 
+@app.route("/twitter_viz")
+def twitter_viz():
+    return render_template("twitter_viz.html")
+
+
 @app.route("/crypto_top_10_line")
 def crypto_top_10_line():
     result = db.engine.execute("SHOW columns FROM top_10_coins")
@@ -65,21 +69,22 @@ def crypto_top_10_line():
 
     return json.dumps(j, default=myconverter)
 
+
 @app.route("/crypto_top_10_bubble")
 def crypto_top_10_bubble():
     result = db.engine.execute("SHOW columns FROM top_10_coins")
     headers = ['name', 'close', 'date', 'full_date', 'volume']
 
-    query = db.engine.execute("SELECT name, close, Month(date), date, AVG(volume) "
-                              "FROM top_10_coins "
-                              "GROUP BY name, Year(date), Month(date) "
-                              "HAVING DATE(`date`) > '2017-01-01'")
+    query = db.engine.execute(
+        "SELECT name, close, Month(date), date, AVG(volume) "
+        "FROM top_10_coins "
+        "GROUP BY name, Year(date), Month(date) "
+        "HAVING DATE(`date`) > '2017-01-01'")
 
     j = [dict(zip(headers, row)) for row in query.fetchall()]
 
-
-
     return json.dumps(j, default=myconverter)
+
 
 @app.route("/data_string")
 def data_string():
@@ -107,6 +112,14 @@ def data_string():
     result_string += data
 
     return result_string
+
+
+@app.route("/twitter_data/<agg_type>")
+def twitter_data(agg_type):
+    with app.open_resource('static/Resources/twitter_data.json') as f:
+        df = pd.read_json(f)
+
+    return "Hello"
 
 
 if __name__ == '__main__':
