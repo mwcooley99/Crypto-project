@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Cryptocurrency</title>
+  <title>Influencers vs. Price</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -20,7 +20,7 @@
     <!-- Navigation -->
     <div class="navigation">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand"  href="{{ url_for('index')}}">Cryptocurrency Analysis</a>
+            <a class="navbar-brand"  href="{{ url_for('index')}}">Influencers vs. Price</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -34,9 +34,9 @@
                     Crypto
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{url_for('trend')}}">Overall Trends</a>
-                    <a class="dropdown-item" href="{{url_for('comparison')}}">Crypto Comparisons</a>
-                    <a class="dropdown-item" href="{{url_for('influencers')}}">Influences</a>
+                    <a class="dropdown-item" href="{{url_for('trend')}}">Price Trends</a>
+                    <a class="dropdown-item" href="{{url_for('influencers')}}">Influencers</a>
+                    <a class="dropdown-item" href="{{url_for('comparison')}}">Influencers vs. Price</a>
                   </div>
                 </li>
                 <li class="nav-item">
@@ -54,13 +54,14 @@
     </div>
     <!-- Footer  -->
     <footer>
-        <div class="footer">Copyright &copy; Project 2 Cryptocurrency 2019</div>
+        <div class="footer">Copyright &copy; Project 2 Influencers vs. Price 2019</div>
     </footer>
 </body>
 
 
-<!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <!-- API key -->
