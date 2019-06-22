@@ -205,11 +205,11 @@ footer{
   max-height: 400px;
 }
 
-.tooltip{
+.tooltip-inf{
   display: none;
+  opacity: 1;
   position: absolute;
   width: 200px;
-  height: 300px;
   padding: 2px;
   font: 11px sans-serif;
   text-align: center;
@@ -217,9 +217,20 @@ footer{
   color: black;
   border: 0;
   border-radius: 10px;
-  border-color: red;
- }
+}
 
-.svg{
-  background-image: url(./Images/map.jpg);   
+.tooltip-content .name {
+  font-weight: bold;
+}
+
+.svg.location{
+  background-image: url(../images/map.jpg);   
+}
+
+.svg.combine{
+  background-image: url(../images/allcombine1.jpg); 
+}
+
+svg.preferred{
+  background-image: url(../images/preferred.jpg); 
 }
