@@ -7,8 +7,6 @@ from datetime import datetime
 
 import json
 
-# from flask_bootstrap import Bootstrap
-
 import os
 
 app = Flask(__name__)
