@@ -68,7 +68,7 @@ tr:nth-child(even) {background-color:lightgray;}
 
 
 p {
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Times New Roman', Times, serif;
     color: white;
 }
@@ -141,6 +141,12 @@ select {
 .img {
   margin-top: 50px;
 }
+ul{
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+}
+
 
 footer{
     background-color:grey;

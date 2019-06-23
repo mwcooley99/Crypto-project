@@ -1,51 +1,116 @@
 {% extends "layout.html" %}
 {% block content %}
+
  <!-- container (Summary Section) -->
-<div id = "summary" class="text-center">
-    <h3>Summary</h3>
-    <p>
-        <em>What is the cryptocurrency?</em>
-    </p>
-    <p>"A cryptocurrency (or crypto currency) is a digital asset designed to
-        work as a medium of exchange that uses strong cryptography to secure
-        financial transactions, control the creation of additional units, and
-        verify the transfer of assets.Cryptocurrencies use decentralized
-        control as opposed to centralized digital currency and central banking systems.
-        A cryptocurrency (or crypto currency) is a digital asset designed to
-        work as a medium of exchange that uses strong cryptography to secure
-        financial transactions, control the creation of additional units, and
-        verify the transfer of assets.Cryptocurrencies use decentralized
-        control as opposed to centralized digital currency and central banking systems."
-    </p>
     <br>
+    <br>
+<div class="container">
     <div class = "row">
         <div class = "col-md-4">
-            <p class= "subtitle" class = "text-center">
-                 <strong>Button 1</strong>
-            </p>
-            <br>
-            <a hre="">
-                <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
-            </a>
+            <p style = "font-size: 22px;" id="visible1">What is Cryptocurrency?</p> 
+
+            <p id="invisible1" class="hide"> Cryptocurrency is a virtual or digital money built with 
+                cryptographic protocols which takes the form of tokens or "coins". 
+                It makes transactions secure and difficult to fake.</p>
         </div>
         <div class = "col-md-4">
-            <p class= "subtitle" class = "text-center">
-                <strong>Button 2</strong>
-            </p>
-            <br>
-            <a hre="" data-toggle="collapse">
-                <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
-            </a>
+            <p style = "font-size: 22px;" id="visible2">What is The Most Important Feature of Cryptocurrency?</p> 
+            <p id="invisible2" class="hide"> It is not controlled by any central authority. 
+                In other words, it doesn't be manipulated and controlled by government .</p>
         </div>
         <div class = "col-md-4">
+            <p style = "font-size: 22px;" id="visible3">What is Popular Crypto from 2017 to 2018?</p> 
+            <ul id="invisible3" class="hide"> 
+                <li style ="color: white;" >Bitcoin</li>
+                <li>Monero</li> 
+                <li>Ethereum</li> 
+                <li>Litcoin</li>
+                <li>BitcoinCash</li>
+                <li>Eos</li> 
+                <li>Stellar</li> 
+                <li>Cardano</li>
+                <li>BitcoinSv</li> 
+                <li>Dash</li> 
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class = "row">
+        <div class = "col-md-2">
             <p class= "subtitle" class = "text-center">
-                <strong>Button 3</strong>
+                 <strong >Bitcoin</strong>
             </p>
             <br>
-            <a hre="" data-toggle="collapse">
-                <img src="../static/images/button.jpg" class="img-circle" alt="button" width="200" height="200"></img>
+            <a>
+                <img src="../static/images/bitcoin.jpg" class="img-circle" alt="bitcoin" width="150" height="150"></img>
             </a>
+        </div>
+        <div class = "col-md-2">
+            <br>
+            <br>
+            <p >The first and still most important cryptocurrency. 
+                After ten years in existence, the highest close price has increased to 19497.4 dollar.
+            </p>
+        </div>
+        <div class = "col-md-2">
+            <p class= "subtitle" class = "text-center">
+                <strong>Inventor</strong>
+            </p>
+            <br>
+            <a >
+                <img src="../static/images/satoshi.png" class="img-circle" alt="satoshi" width="150" height="150"></img>
+            </a>
+        </div>
+        <div class = "col-md-2">
+            <br>
+            <br>
+            <br>
+            <p class = "text-center">Satoshi Nakamoto is the inventor of Bitcoin. It was released in 2009.
+            </p>
+        </div>
+        <div class = "col-md-2">
+            <p class= "subtitle" class = "text-center">
+                <strong>Exchange to Cash</strong>
+            </p>
+            <br>
+            <a >
+                <img src="../static/images/exchange.png" class="img-circle" alt="exchange" width="150" height="150"></img>
+            </a>
+        </div>
+        <div class = "col-md-2">
+            <br>
+            <br>
+            <p class = "text-center">Coinbase.com or Kraken.com can convert bitcoin to cash and 
+                ultimately move it to a bank account. Using a bitcoin ATM is the easiest way to sell bitcoin and withdraw the resulting cash directly to a bank account.
+            </p>
         </div>
     </div>
 </div>
+
+<style>
+    .hide{display:none;}
+    .show{display:block;}
+</style>
+<script>
+        $(function(){
+            $("#visible1").click(function(){
+                $("#invisible1").toggleClass("show");
+            });
+        });
+</script>
+<script>
+        $(function(){
+            $("#visible2").click(function(){
+                $("#invisible2").toggleClass("show");
+            });
+        });
+</script>
+<script>
+        $(function(){
+            $("#visible3").click(function(){
+                $("#invisible3").toggleClass("show");
+            });
+        });
+</script>
+
 {% endblock %}
