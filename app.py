@@ -46,7 +46,28 @@ def members():
 
 @app.route("/trend")
 def trend():
-    return render_template("trend.html")
+    headers = ['close', 'date', 'name']
+
+    query = db.engine.execute("SELECT close, date, name "
+                              "FROM top_10_coins "
+                              "WHERE DATE(date) > '2017-01-01'")
+    line_data = [dict(zip(headers, row)) for row in query.fetchall()]
+    for row in line_data:
+        row['date'] = row['date'].__str__()
+
+    headers = ['name', 'close', 'date', 'full_date', 'volume']
+
+    query = db.engine.execute(
+        "SELECT name, close, Month(date), date, AVG(volume) "
+        "FROM top_10_coins "
+        "GROUP BY name, Year(date), Month(date) "
+        "HAVING DATE(`date`) > '2017-01-01'")
+
+    bubble_data = [dict(zip(headers, row)) for row in query.fetchall()]
+    for row in bubble_data:
+        row['date'] = row['date'].__str__()
+
+    return render_template("trend.html", line_data=line_data, bubble_data=bubble_data)
 
 
 @app.route("/twitter_viz")
@@ -56,7 +77,6 @@ def twitter_viz():
 
 @app.route("/crypto_top_10_line")
 def crypto_top_10_line():
-    result = db.engine.execute("SHOW columns FROM top_10_coins")
     headers = ['close', 'date', 'name']
 
     query = db.engine.execute("SELECT close, date, name "
@@ -82,6 +102,9 @@ def crypto_top_10_bubble():
         "HAVING DATE(`date`) > '2017-01-01'")
 
     j = [dict(zip(headers, row)) for row in query.fetchall()]
+
+    with open("data.json2", "w") as f:
+        json.dump(j, f, default=myconverter)
 
     return json.dumps(j, default=myconverter)
 
