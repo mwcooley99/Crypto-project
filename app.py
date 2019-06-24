@@ -49,9 +49,10 @@ def trend():
     # Get the Line graph data
     headers = ['close', 'date', 'name']
 
-    query = db.engine.execute("SELECT close, DATE_FORMAT(date, '%Y-%m-%d %T') AS date, name "
-                              "FROM top_10_coins "
-                              "WHERE DATE(date) > '2017-01-01'")
+    query = db.engine.execute(
+        "SELECT close, DATE_FORMAT(date, '%Y-%m-%d %T') AS date, name "
+        "FROM top_10_coins "
+        "WHERE DATE(date) > '2017-01-01'")
     line_data = [dict(zip(headers, row)) for row in query.fetchall()]
 
     # Get the Bubble Chart data
@@ -65,14 +66,29 @@ def trend():
 
     bubble_data = [dict(zip(headers, row)) for row in query.fetchall()]
 
-
     return render_template("trend.html", line_data=line_data,
                            bubble_data=bubble_data)
 
 
 @app.route("/twitter_viz")
 def twitter_viz():
-    return render_template("twitter_viz.html")
+    with app.open_resource('static/Resources/twitter_data.json') as f:
+        df = pd.read_json(f, convert_dates=True)
+
+    aggs = ['D', 'M', 'Y']
+    data = pd.DataFrame(columns=['user_name', 'text', 'group'])
+
+    for agg in aggs:
+        temp = df.groupby(['user_name', pd.Grouper(key='date', freq=agg)])\
+            .agg({'text': 'count'}).reset_index()\
+            .groupby('user_name').agg({'text': 'mean'}).reset_index()
+        temp['group'] = agg
+
+        data = data.append(temp)
+
+
+
+    return render_template("twitter_viz.html", data=data.to_dict(orient="records"))
 
 
 @app.route("/data_string")
@@ -107,6 +123,8 @@ def data_string():
 def twitter_data(agg_type):
     with app.open_resource('static/Resources/twitter_data.json') as f:
         df = pd.read_json(f)
+
+
 
     return ""
 
