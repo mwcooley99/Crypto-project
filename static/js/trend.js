@@ -1,5 +1,9 @@
-var idleTimeout
-function idled() { idleTimeout = null; }
+console.log(bubbleData);
+var idleTimeout;
+
+function idled() {
+    idleTimeout = null;
+}
 
 var coins = {
     "Bitcoin": {
@@ -58,34 +62,46 @@ var coins = {
 
 var parseTime = d3.timeParse("%Y-%m-%d 00:00:00");
 
-d3.json("/static/Resources/trend.json").then(function (data) {
-    // Format the data
+function formatLineData(data) {
     data.forEach(function (data) {
         data.date = parseTime(data.date);
         data.close = +data.close;
         data.volume = +data.volume;
-        coins[data.name].dailyData.push({ close: data.close, date: data.date, volume: data.volume });
+        coins[data.name].dailyData.push({
+            close: data.close,
+            date: data.date,
+            volume: data.volume
+        });
     });
     renderPriceChart(data);
-})
+}
 
-d3.json("/static/Resources/trend_monthly.json").then(function (data) {
-    // Format the data
+
+function formatBubbleData(data) {
     data.forEach(function (data) {
-        data.date = parseTime(data.full_date);
+        data.date = parseTime(data.date);
         data.close = +data.close;
         data.volume = +data.volume;
-        coins[data.name].monthlyData.push({ close: data.close, date: data.date, volume: data.volume });
+        coins[data.name].monthlyData.push({
+            close: data.close,
+            date: data.date,
+            volume: data.volume
+        });
     });
     renderVolumeChart(data);
-})
+}
+
+// Call format and render functions
+formatLineData(lineData);
+formatBubbleData(bubbleData);
+
 
 function renderPriceChart(data) {
     // Chart Params
     var svgWidth = 960;
     var svgHeight = 500;
 
-    var margin = { top: 20, right: 40, bottom: 60, left: 50 };
+    var margin = {top: 20, right: 40, bottom: 60, left: 50};
 
     var width = svgWidth - margin.left - margin.right;
     var height = svgHeight - margin.top - margin.bottom;
@@ -125,7 +141,7 @@ function renderPriceChart(data) {
 
     // Add y-axis to the left side of the display
     lineChart.append("g")
-        // Define the color of the axis text
+    // Define the color of the axis text
         .classed("green", true)
         .call(leftAxis);
 
@@ -143,15 +159,17 @@ function renderPriceChart(data) {
         d3.selectAll(".bubbles").style("opacity", .05)
         // expect the one that is hovered
         d3.selectAll("." + d).style("opacity", 1)
-    }
+    };
 
     // And when it is not hovered anymore
     var noHighlight = function (d) {
         d3.selectAll(".bubbles").style("opacity", 1)
-    }
+    };
 
     svg.on("dblclick", function () {
-        xTimeScale.domain(d3.extent(data, function (d) { return d.date; }))
+        xTimeScale.domain(d3.extent(data, function (d) {
+            return d.date;
+        }))
         xAxis.transition().call(d3.axisBottom(xTimeScale))
         Object.keys(coins).forEach(function (coin) {
             lineChart
@@ -161,9 +179,9 @@ function renderPriceChart(data) {
         })
     });
 
-    var brush = d3.brushX()                
-        .extent([[0, 0], [width, height]]) 
-        .on("end", function(){
+    var brush = d3.brushX()
+        .extent([[0, 0], [width, height]])
+        .on("end", function () {
             // What are the selected boundaries?
             extent = d3.event.selection
 
@@ -180,26 +198,26 @@ function renderPriceChart(data) {
             xAxis.transition().duration(1000).call(d3.axisBottom(xTimeScale))
             Object.keys(coins).forEach(function (coin) {
                 lineChart
-                    .select('.'+coin.replace(/\s+/g, '-').toLowerCase())
+                    .select('.' + coin.replace(/\s+/g, '-').toLowerCase())
                     .transition()
                     .duration(1000)
                     .attr("d", line1(coins[coin].dailyData))
             })
-        })  
+        });
 
     lineChart
         .append("g")
         .attr("class", "brush")
         .call(brush);
 
-    Object.keys(coins).forEach(function(coin){
+    Object.keys(coins).forEach(function (coin) {
         lineChart.append("path")
             .data(coins[coin].dailyData)
             .attr("class", "line " + coin.replace(/\s+/g, '-').toLowerCase())
             .attr("d", line1(coins[coin].dailyData))
             .style("stroke", coins[coin].color)
             .style("fill", "none")
-    })
+    });
 
     // Append axes titles
     lineChart.append("text")
@@ -227,15 +245,23 @@ function renderPriceChart(data) {
         .append("text")
         .style("font-weight", "bold")
         .attr('x', 30)
-        .attr('y', function (d, i) { return 30 + i * 30 })
-        .text(function (d) { return d })
-        .style("fill", function (d) { return coins[d].color; })
+        .attr('y', function (d, i) {
+            return 30 + i * 30
+        })
+        .text(function (d) {
+            return d
+        })
+        .style("fill", function (d) {
+            return coins[d].color;
+        })
         .style("font-size", 15)
         .on("click", function (d) {
             // is the element currently visible ?
-            currentOpacity = d3.selectAll("." + d).style("opacity")
+            let currentClass = d.replace(/\s+/g, '-').toLowerCase();
+            var currentOpacity = lineChart.selectAll("." + currentClass).style("opacity");
+
             // Change the opacity: from 0 to 1 or from 1 to 0
-            d3.selectAll("." + d).transition().style("opacity", currentOpacity == 1 ? 0 : 1);
+            lineChart.selectAll("." + currentClass).transition().style("opacity", currentOpacity == 1 ? 0 : 1);
         });
 }
 
@@ -244,7 +270,7 @@ function renderVolumeChart(data) {
     var svgWidth = 960;
     var svgHeight = 500;
 
-    var margin = { top: 20, right: 40, bottom: 60, left: 50 };
+    var margin = {top: 20, right: 40, bottom: 60, left: 50};
 
     var width = svgWidth - margin.left - margin.right;
     var height = svgHeight - margin.top - margin.bottom;
@@ -260,7 +286,7 @@ function renderVolumeChart(data) {
         .attr("transform", `translate(${margin.left + 50}, ${margin.top})`);//+height
 
     var xTimeScale = d3.scaleTime()
-        .domain(d3.extent(data, function(d){
+        .domain(d3.extent(data, function (d) {
             return d.date
         }))
         .range([0, width]);
@@ -288,16 +314,16 @@ function renderVolumeChart(data) {
 
     // Add y-axis to the left side of the display
     volumeChart.append("g")
-        // Define the color of the axis text
-        //.classed("green", true)
+    // Define the color of the axis text
+    //.classed("green", true)
         .call(leftAxis);
 
     //Create Circles
     // ==============================
     var circlesGroup = volumeChart.selectAll("circle")
-        .data(coins["Bitcoin"].monthlyData)
+        .data(coins["Bitcoin"].monthlyData);
 
-    Object.keys(coins).forEach(function(coin){
+    Object.keys(coins).forEach(function (coin) {
         circlesGroup.enter()
             .data(coins[coin].monthlyData)
             .append("circle")
@@ -310,7 +336,7 @@ function renderVolumeChart(data) {
             .attr("opacity", "0.75")
             .exit()
             .remove();
-    })
+    });
 
     volumeChart.append("text")
         .style("font-weight", "bold")
@@ -337,9 +363,9 @@ function renderVolumeChart(data) {
         .style("background-color", "black")
         .style("border-radius", "5px")
         .style("padding", "10px")
-        .style("color", "white")
+        .style("color", "white");
 
-    var size = 20
+    var size = 20;
 
     //       HIGHLIGHT GROUP      //
     // ---------------------------//
@@ -347,7 +373,7 @@ function renderVolumeChart(data) {
     // What to do when one group is hovered
     var highlight = function (d) {
         // reduce opacity of all groups
-        d3.selectAll(".bubbles").style("opacity", .001)
+        d3.selectAll(".bubbles").style("opacity", .001);
         // expect the one that is hovered
         d3.selectAll("." + d.replace(/\s+/g, '-').toLowerCase()).style("opacity", 1)
     }
@@ -362,10 +388,12 @@ function renderVolumeChart(data) {
         .data(Object.keys(coins))
         .enter()
         .attr("cx", 20)
-        .attr("cy", function (d, i) { return 10 + i * (size + 5) })
+        .attr("cy", function (d, i) {
+            return 10 + i * (size + 5)
+        })
         .attr("r", 7)
         .on("mouseover", highlight)
-        .on("mouseleave", noHighlight)
+        .on("mouseleave", noHighlight);
 
     // Add labels beside legend dots
     volumeChart.selectAll("mylegend")
@@ -373,11 +401,17 @@ function renderVolumeChart(data) {
         .enter()
         .append("text")
         .style("font-weight", "bold")
-        .style("fill", function (d) { return coins[d].color; })
+        .style("fill", function (d) {
+            return coins[d].color;
+        })
         .attr('x', 30)
-        .attr("y", function (d, i) { return i * (size + 5) + (size / 2) }) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("y", function (d, i) {
+            return i * (size + 5) + (size / 2)
+        }) // 100 is where the first dot appears. 25 is the distance between dots
         .style("font-size", 15)
-        .text(function (d) { return d })
+        .text(function (d) {
+            return d
+        })
         .attr("text-anchor", "left")
         .style("alignment-baseline", "middle")
         .on("mouseover", highlight)

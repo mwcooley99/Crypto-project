@@ -1,3 +1,5 @@
+console.log(line_data)
+
 // Chart Params
 var svgWidth = 960;
 var svgHeight = 500;
@@ -8,13 +10,13 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
-var svg = d3
+var svgLine = d3
   .select("#multiline")
   .append("svg")
   .attr("width", svgWidth)
   .attr("height", svgHeight);
 
-var chartGroup = svg.append("g")
+var chartGroupLine = svgLine.append("g")
   .attr("transform", `translate(${margin.left+50}, ${margin.top})`);
 
 // Import data from an external CSV file
@@ -22,10 +24,11 @@ var chartGroup = svg.append("g")
 
 // Function is called and passes csv data
 //d3.csv(file).then(successHandle, errorHandle);
-d3.json("data.json").then(function(data) {
-  successHandle(data);
-})
-
+// d3.json("/crypto_top_10_line").then(function(data) {
+//     console.log(data);
+//   successHandle(data);
+// });
+successHandle(line_data);
 // Read csv file
 //If error exist, it will show in console
 //function errorHandle(error) {
@@ -57,7 +60,7 @@ function successHandle(cryptoData) {
       data.date = parseTime(data.date);
       data.close = +data.close;
     
-
+    // console.log(data);
     if(data.name == "Bitcoin")
     {
         bitcoin.push({ close: data.close,  date: data.date});
@@ -124,12 +127,12 @@ function successHandle(cryptoData) {
 
 
   // Add x-axis
-  chartGroup.append("g")
+  chartGroupLine.append("g")
     .attr("transform", `translate(0, ${height})`)
     .call(bottomAxis);
 
   // Add y-axis to the left side of the display
-  chartGroup.append("g")
+  chartGroupLine.append("g")
     // Define the color of the axis text
     .classed("green", true)
     .call(leftAxis);
@@ -137,7 +140,7 @@ function successHandle(cryptoData) {
   // Line generators for each line
   
    
-   //console.log(bitcoin);
+
    
     var line1 = d3.line()
     .x(d => xTimeScale(d.date))
@@ -168,64 +171,64 @@ function successHandle(cryptoData) {
 
 
   // Append paths for lines
-  chartGroup.append("path")
+  chartGroupLine.append("path")
     .data(bitcoin)
     .attr("class","bitcoin")
     .attr("d", line1(bitcoin))
     .classed("black", true);
 
   
-    chartGroup.append("path")
+    chartGroupLine.append("path")
     .data(ethereum)
     .attr("class","ethereum")
     .attr("d", line1(ethereum))
     .classed("orange", true);
 
 
-    chartGroup.append("path")
+    chartGroupLine.append("path")
     .data(litcoin)
     .attr("class","litcoin")
     .attr("d", line1(litcoin))
     .classed("navyblue", true);
 
-    chartGroup.append("path")
+    chartGroupLine.append("path")
     .data(monero)
     .attr("class","monero")
     .attr("d", line1(monero))
     .classed("red", true);
 
-    chartGroup.append("path")
+    chartGroupLine.append("path")
     .data(bitcoinCash)
     .attr("class","bitcoinCash")
     .attr("d", line1(bitcoinCash))
     .classed("darkgreen", true);
 
 
-    chartGroup.append("path")
+    chartGroupLine.append("path")
     .data(dash)
     .attr("class","dash")
     .attr("d", line1(dash))
     .classed("yellowgreen", true);
 
-    chartGroup.append("path")
+    chartGroupLine.append("path")
     .data(bitcoinSv)
     .attr("class","bitcoinSv")
     .attr("d", line1(bitcoinSv))
     .classed("acquamarine", true);
 
-    chartGroup.append("path")
+    chartGroupLine.append("path")
     .data(eos)
     .attr("class","eos")
     .attr("d", line1(eos))
     .classed("lightskyblue", true);
 
-    chartGroup.append("path")
+    chartGroupLine.append("path")
     .data(stellar)
     .attr("class","stellar")
     .attr("d", line1(stellar))
     .classed("darkslategray", true);
 
-    chartGroup.append("path")
+    chartGroupLine.append("path")
     .data(cardano)
     .attr("class","cardano")
     .attr("d", line1(cardano))
@@ -233,7 +236,7 @@ function successHandle(cryptoData) {
 
 
   // Append axes titles
-  chartGroup.append("text")
+  chartGroupLine.append("text")
   .attr("transform", `translate(${width / 2}, ${height + margin.top + 20})`)
     .style("font-weight","bold")
     .classed("date text", true)
@@ -242,7 +245,7 @@ function successHandle(cryptoData) {
     .attr("fill", "Maroon")
     .text("Date");
 
-  chartGroup.append("text")
+  chartGroupLine.append("text")
   .style("font-weight","bold")
   .attr("fill", "Maroon")
     .attr("transform", "rotate(-90)")
@@ -254,7 +257,7 @@ function successHandle(cryptoData) {
 
 
 
-    chartGroup.selectAll("mylegend")
+    chartGroupLine.selectAll("mylegend")
         .data(allGroup)
         .enter()
         .append("text")

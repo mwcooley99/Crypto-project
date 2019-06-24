@@ -46,33 +46,17 @@ def members():
 
 @app.route("/trend")
 def trend():
-    return render_template("trend.html")
-
-
-@app.route("/twitter_viz")
-def twitter_viz():
-    return render_template("twitter_viz.html")
-
-
-@app.route("/crypto_top_10_line")
-def crypto_top_10_line():
-    result = db.engine.execute("SHOW columns FROM top_10_coins")
+    # Get the Line graph data
     headers = ['close', 'date', 'name']
 
     query = db.engine.execute("SELECT close, date, name "
                               "FROM top_10_coins "
                               "WHERE DATE(date) > '2017-01-01'")
-    j = [dict(zip(headers, row)) for row in query.fetchall()]
+    line_data = [dict(zip(headers, row)) for row in query.fetchall()]
+    for row in line_data:
+        row['date'] = row['date'].__str__()
 
-    with open("data.json", "w") as f:
-        json.dump(j, f, default=myconverter)
-
-    return json.dumps(j, default=myconverter)
-
-
-@app.route("/crypto_top_10_bubble")
-def crypto_top_10_bubble():
-    result = db.engine.execute("SHOW columns FROM top_10_coins")
+    # Get the Bubble Chart data
     headers = ['name', 'close', 'date', 'full_date', 'volume']
 
     query = db.engine.execute(
@@ -81,9 +65,17 @@ def crypto_top_10_bubble():
         "GROUP BY name, Year(date), Month(date) "
         "HAVING DATE(`date`) > '2017-01-01'")
 
-    j = [dict(zip(headers, row)) for row in query.fetchall()]
+    bubble_data = [dict(zip(headers, row)) for row in query.fetchall()]
+    for row in bubble_data:
+        row['date'] = row['full_date'].__str__()
 
-    return json.dumps(j, default=myconverter)
+    return render_template("trend.html", line_data=line_data,
+                           bubble_data=bubble_data)
+
+
+@app.route("/twitter_viz")
+def twitter_viz():
+    return render_template("twitter_viz.html")
 
 
 @app.route("/data_string")
@@ -99,7 +91,7 @@ def data_string():
     query = db.engine.execute("SELECT * "
                               "FROM top_10_coins "
                               "WHERE DATE(date) > '2017-01-01'")
-
+    # Format the data into a string
     data = ""
     for row in query.fetchall():
         row = list(row)
@@ -119,7 +111,7 @@ def twitter_data(agg_type):
     with app.open_resource('static/Resources/twitter_data.json') as f:
         df = pd.read_json(f)
 
-    return "Hello"
+    return ""
 
 
 if __name__ == '__main__':
