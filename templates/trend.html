@@ -12,6 +12,9 @@
     </div>
  </div>
 </div>
-
+<script>
+    var lineData = {{ line_data|tojson }};
+    var bubbleData = {{ bubble_data|tojson}};
+</script>
 <script src="{{ url_for('static', filename='js/trend.js') }}"></script>
 {% endblock %}

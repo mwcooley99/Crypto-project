@@ -1,4 +1,5 @@
-var idleTimeout
+console.log(bubbleData);
+var idleTimeout;
 
 function idled() {
     idleTimeout = null;
@@ -61,8 +62,7 @@ var coins = {
 
 var parseTime = d3.timeParse("%Y-%m-%d 00:00:00");
 
-d3.json("/static/Resources/trend.json").then(function (data) {
-    // Format the data
+function formatLineData(data) {
     data.forEach(function (data) {
         data.date = parseTime(data.date);
         data.close = +data.close;
@@ -74,12 +74,12 @@ d3.json("/static/Resources/trend.json").then(function (data) {
         });
     });
     renderPriceChart(data);
-});
+}
 
-d3.json("/static/Resources/trend_monthly.json").then(function (data) {
-    // Format the data
+
+function formatBubbleData(data) {
     data.forEach(function (data) {
-        data.date = parseTime(data.full_date);
+        data.date = parseTime(data.date);
         data.close = +data.close;
         data.volume = +data.volume;
         coins[data.name].monthlyData.push({
@@ -89,7 +89,12 @@ d3.json("/static/Resources/trend_monthly.json").then(function (data) {
         });
     });
     renderVolumeChart(data);
-});
+}
+
+// Call format and render functions
+formatLineData(lineData);
+formatBubbleData(bubbleData);
+
 
 function renderPriceChart(data) {
     // Chart Params
