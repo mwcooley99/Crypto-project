@@ -1,4 +1,4 @@
-
+console.log(line_data)
 
 // Chart Params
 var svgWidth = 960;

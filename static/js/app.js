@@ -12,7 +12,7 @@ var svg = d3
 
 var defs = svg.append('defs');
 
-defs.append('pattern')
+defs.append('pattern');
 
 var radiusScale = d3.scaleSqrt().domain([236000, 1270000]).range([20, 80])
 

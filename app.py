@@ -65,7 +65,7 @@ def trend():
 
     bubble_data = [dict(zip(headers, row)) for row in query.fetchall()]
     for row in bubble_data:
-        row['date'] = row['date'].__str__()
+        row['date'] = row['full_date'].__str__()
 
     return render_template("trend.html", line_data=line_data, bubble_data=bubble_data)
 

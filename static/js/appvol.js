@@ -1,4 +1,4 @@
-console.log(bubble_data);
+
 
 // Chart Params
 var svgWidth = 960;
@@ -53,10 +53,7 @@ function successHandle(cryptoData) {
 
 // Format the data
     cryptoData.forEach(function (data) {
-        //console.log(data);
-        //console.log(parseTime(data.full_date));
-
-        data.date = parseTime(data.full_date); // TODO - parser not working
+        data.date = parseTime(data.date);
         data.close = +data.close;
         data.volume = +data.volume;
 
