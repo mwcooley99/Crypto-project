@@ -49,25 +49,22 @@ def trend():
     # Get the Line graph data
     headers = ['close', 'date', 'name']
 
-    query = db.engine.execute("SELECT close, date, name "
+    query = db.engine.execute("SELECT close, DATE_FORMAT(date, '%Y-%m-%d %T') AS date, name "
                               "FROM top_10_coins "
                               "WHERE DATE(date) > '2017-01-01'")
     line_data = [dict(zip(headers, row)) for row in query.fetchall()]
-    for row in line_data:
-        row['date'] = row['date'].__str__()
 
     # Get the Bubble Chart data
-    headers = ['name', 'close', 'date', 'full_date', 'volume']
+    headers = ['name', 'close', 'month', 'date', 'volume']
 
     query = db.engine.execute(
-        "SELECT name, close, Month(date), date, AVG(volume) "
+        "SELECT name, close, Month(date), DATE_FORMAT(date, '%Y-%m-%d %T') AS date, AVG(volume) "
         "FROM top_10_coins "
         "GROUP BY name, Year(date), Month(date) "
         "HAVING DATE(`date`) > '2017-01-01'")
 
     bubble_data = [dict(zip(headers, row)) for row in query.fetchall()]
-    for row in bubble_data:
-        row['date'] = row['full_date'].__str__()
+
 
     return render_template("trend.html", line_data=line_data,
                            bubble_data=bubble_data)
