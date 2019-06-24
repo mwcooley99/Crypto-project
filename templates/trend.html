@@ -1,59 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="row">
-  <!-- Left Session -->
-  <div class="col-lg-6">
-        <div class="box">
-            <br>
-            <h4 class="subtitle">Chart A</h4>
-            <br>
-            <div class="row”>
-              <div class="col-xs-12  col-md-9">
-                <div id="multiline”>
-                  <!-- We append our chart here. -->
-                </div>
-              </div>
-            </div>
-            <br>
-            <br>
-            <p id ="text">"1. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-            <p id ="text">"2. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-            <p id ="text">"3. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-            <p id ="text">"4. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>
-        </div>
+  <div class="col-lg-12">
+    <div class="price">
+      <!-- We append our chart here. -->
+    </div>
  </div>
-  <!-- Right Session -->
-<!--  <div class="col-lg-6">-->
-<!--        <div class="box">-->
-<!--          <br>-->
-<!--          <h5 class="subtitle">Chart B</h5>-->
-<!--          <br>-->
-<!--          <br>-->
-<!--          <div class="row”>-->
-<!--            <div class="col-xs-12  col-md-9">-->
-<!--              <div class="chart”>-->
-<!--                &lt;!&ndash; We append our chart here. &ndash;&gt;-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <br>-->
-<!--          <br>-->
-<!--          <p id ="text">"1. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>-->
-<!--          <p id ="text">"2. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>-->
-<!--          <p id ="text">"3. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>-->
-<!--          <p id ="text">"4. A cryptocurrency (or crypto currency) is a digital asset designed to"</p>-->
-<!--      </div>-->
-<!--  </div>-->
-
+  <div class="col-lg-12">
+    <div class="volume">
+      <!-- We append our chart here. -->
+    </div>
+ </div>
 </div>
-<!--<div id="multiline"></div>-->
-<!--<div class="chart"></div>-->
-<script>
-    var line_data = {{ line_data|tojson }};
-    var bubble_data = {{ bubble_data|tojson }};
-</script>
-<script src="{{ url_for('static', filename='js/appvol.js') }}"></script>
-<script src="{{ url_for('static', filename='js/appline.js') }}"></script>
 
-
+<script src="{{ url_for('static', filename='js/trend.js') }}"></script>
 {% endblock %}

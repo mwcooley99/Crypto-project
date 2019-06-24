@@ -75,11 +75,7 @@ var simulation = d3.forceSimulation()
     .force('y', forceYCombine)
     .force('collide', forceCollide)
 
-d3.queue()
-    .defer(d3.csv, '/static/Resources/Influencers.csv')
-    .await(ready)
-
-function ready(error, datapoints) {
+d3.csv('/static/Resources/Influencers.csv').then(function(datapoints) {
     var tooltip = d3.select(".chart")
         .append("div")
         .attr("class", "tooltip-inf")
@@ -207,4 +203,4 @@ function ready(error, datapoints) {
             })
 
     }
-}
+});
