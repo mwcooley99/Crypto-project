@@ -1,3 +1,5 @@
+console.log(bubble_data);
+
 // Chart Params
 var svgWidth = 960;
 var svgHeight = 500;
@@ -54,7 +56,7 @@ function successHandle(cryptoData) {
         //console.log(data);
         //console.log(parseTime(data.full_date));
 
-        data.date = parseTime(data.full_date);
+        data.date = parseTime(data.full_date); // TODO - parser not working
         data.close = +data.close;
         data.volume = +data.volume;
 
@@ -124,6 +126,7 @@ function successHandle(cryptoData) {
         }
 
     });
+    console.log(cryptoData);
 
 //xmin =d3.min(cryptoData,d=>d.date)
 //xmax=d3.max(cryptoData,d=>d.date )
