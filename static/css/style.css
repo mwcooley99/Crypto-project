@@ -251,8 +251,8 @@ footer{
   border-color: red;
  }
 
-.svg{
-  background-image: url(./Images/map.jpg);   
+.svg.location{
+  background-image: url(../Images/map.jpg);
 }
 
 .svg.combine{
@@ -264,8 +264,9 @@ svg.preferred{
 }
 
 .black {
-  stroke: black;
-  fill: none;
+    stroke: black;
+    fill: none;
+}
 
 @keyframes text{
   0%{
