@@ -54,7 +54,7 @@ tr:nth-child(even) {background-color:lightgray;}
 
 .table-responsive{
   text-align: center;
-  white-space: nowrap;
+  white-space: nowrap;  
 }
 
 .header {
@@ -68,7 +68,7 @@ tr:nth-child(even) {background-color:lightgray;}
 
 
 p {
-    font-size: 16px;
+    font-size: 18px;
     font-family: 'Times New Roman', Times, serif;
     color: white;
 }
@@ -105,12 +105,6 @@ h3{
     margin-top:30px; 
     color: white;
 }
-/*.select{
-    position: center;
-    margin-top: 40px;
-    margin-right: 30px;
-    margin-left: 50px;
-}*/
 
 select {
   display: block;
@@ -137,6 +131,13 @@ select {
   border-radius: 50%;
   margin-bottom: 80px;
 }
+.img-circle_pic {
+  border-radius: 50%;
+  margin-bottom: 80px;
+  border-width: 7px;   border-color:rgb(60, 208, 228);   border-style: solid;
+}
+
+
 
 .img {
   margin-top: 50px;
@@ -146,6 +147,30 @@ ul{
   font-family: 'Times New Roman', Times, serif;
   color: white;
 }
+
+
+
+.team-section{
+  text-align: center;
+  padding:60px;
+}
+
+.team-section h1{
+  margin-bottom:30px;
+  color:white;
+  font-size: 38px;
+  font-family: cursive;
+}
+
+.name{
+  margin-bottom:30px;
+  text-align:center;
+  font-size:30px;
+  color: white;
+  font-family: cursive;
+  animation: text 3s 1;
+}
+
 
 
 footer{
@@ -211,11 +236,11 @@ footer{
   max-height: 400px;
 }
 
-.tooltip-inf{
+.tooltip{
   display: none;
-  opacity: 1;
   position: absolute;
   width: 200px;
+  height: 300px;
   padding: 2px;
   font: 11px sans-serif;
   text-align: center;
@@ -223,14 +248,11 @@ footer{
   color: black;
   border: 0;
   border-radius: 10px;
-}
+  border-color: red;
+ }
 
-.tooltip-content .name {
-  font-weight: bold;
-}
-
-.svg.location{
-  background-image: url(../images/map.jpg);
+.svg{
+  background-image: url(./Images/map.jpg);   
 }
 
 .svg.combine{
@@ -245,120 +267,17 @@ svg.preferred{
   stroke: black;
   fill: none;
 
-
+@keyframes text{
+  0%{
+    color:rgb(30, 116, 131);
+    margin-bottom: -40px;
   }
-.bitcoin_legend {
-          color:black;
-          fill:black;
-      }
-
-.orange {
-      stroke: orange;
-      fill: none;
-
-
-      }
-
-.ethereum_legend {
-          color:orange;
-          fill:orange;
-      }
-
- .navyblue {
-          stroke: navy;
-          fill: none;
-
-
-      }
-   .litcoin_legend {
-                  color:navy;
-                  fill:navy;
-              }
-
-.red {
-          stroke: red;
-           fill: none;
-
-
-           }
-  .monero_legend {
-                  color:red;
-                  fill:red;
-              }
-
-
- .darkgreen {
-        stroke: darkgreen;
-       fill: none;
-
-
-        }
-
- .bitcoinCash_legend {
-          color:darkgreen;
-          fill:darkgreen;
-      }
-
-
-  .yellowgreen {
-          stroke: yellowgreen;
-          fill: none;
-
-
-          }
-  .dash_legend {
-                  color:yellowgreen;
-                  fill:yellowgreen;
-              }
-
-  .acquamarine {
-              stroke: aquamarine;
-              fill: none;
-
-
-              }
-   .bitcoinSv_legend {
-                  color:aquamarine;
-                  fill:aquamarine;
-              }
-
-
-   .lightsklyblue {
-                  stroke: lightskyblue;
-                  fill: none;
-
-
-                  }
-    .eos_legend {
-                     color:lightskyblue;
-                    fill:lightskyblue;
-    }
-
-
-
-    .darkslategray{
-             stroke: darkslategray;
-           fill: none;
-
-
-             }
-
-  .stellar_legend {
-             color:darkslategray;
-              fill:darkslategray;
-                   }
-
-
- .sandybrown{
-            stroke: sandybrown;
-            fill: none;
-
-
-               }
-
-  .cardano_legend {
-                      color:sandybrown;
-                      fill:sandybrown;
-                              }
-
-
+  30%{
+    letter-spacing: 25px;
+    margin-bottom: -40px;
+  }
+  85%{
+    letter-spacing: 8px;
+    margin-bottom: -40px;
+  }
+}
