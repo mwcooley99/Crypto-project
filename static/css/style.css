@@ -255,6 +255,18 @@ footer{
   background-image: url(./Images/map.jpg);   
 }
 
+.svg.combine{
+  background-image: url(../images/allcombine1.jpg); 
+}
+
+svg.preferred{
+  background-image: url(../images/preferred.jpg); 
+}
+
+.black {
+  stroke: black;
+  fill: none;
+
 @keyframes text{
   0%{
     color:rgb(30, 116, 131);
