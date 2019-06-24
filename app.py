@@ -79,16 +79,15 @@ def twitter_viz():
     data = pd.DataFrame(columns=['user_name', 'text', 'group'])
 
     for agg in aggs:
-        temp = df.groupby(['user_name', pd.Grouper(key='date', freq=agg)])\
-            .agg({'text': 'count'}).reset_index()\
+        temp = df.groupby(['user_name', pd.Grouper(key='date', freq=agg)]) \
+            .agg({'text': 'count'}).reset_index() \
             .groupby('user_name').agg({'text': 'mean'}).reset_index()
         temp['group'] = agg
 
         data = data.append(temp)
 
-
-
-    return render_template("twitter_viz.html", data=data.to_dict(orient="records"))
+    return render_template("twitter_viz.html",
+                           data=data.to_dict(orient="records"))
 
 
 @app.route("/data_string")
@@ -123,8 +122,6 @@ def data_string():
 def twitter_data(agg_type):
     with app.open_resource('static/Resources/twitter_data.json') as f:
         df = pd.read_json(f)
-
-
 
     return ""
 
