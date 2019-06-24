@@ -13,9 +13,9 @@
  </div>
 </div>
 <script>
-    var lineData = {{ line_data|tojson|safe }};
+    var lineData = JSON.parse('{{ line_data|tojson|safe }}');
 
-    var bubbleData = {{ bubble_data|tojson|safe }};
+    var bubbleData = JSON.parse('{{ bubble_data|tojson|safe }}');
 
 </script>
 <script src="{{ url_for('static', filename='js/trend.js') }}"></script>
