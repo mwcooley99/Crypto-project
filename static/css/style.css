@@ -232,6 +232,15 @@ footer{
 .svg.location{
   background-image: url(../images/map.jpg);
 }
+
+.svg.combine{
+  background-image: url(../images/allcombine1.jpg); 
+}
+
+svg.preferred{
+  background-image: url(../images/preferred.jpg); 
+}
+
 .black {
   stroke: black;
   fill: none;
