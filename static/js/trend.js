@@ -1,4 +1,3 @@
-console.log(bubbleData);
 var idleTimeout;
 
 function idled() {
