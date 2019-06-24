@@ -46,6 +46,7 @@ def members():
 
 @app.route("/trend")
 def trend():
+    # Get the Line graph data
     headers = ['close', 'date', 'name']
 
     query = db.engine.execute("SELECT close, date, name "
@@ -55,6 +56,7 @@ def trend():
     for row in line_data:
         row['date'] = row['date'].__str__()
 
+    # Get the Bubble Chart data
     headers = ['name', 'close', 'date', 'full_date', 'volume']
 
     query = db.engine.execute(
@@ -89,7 +91,7 @@ def data_string():
     query = db.engine.execute("SELECT * "
                               "FROM top_10_coins "
                               "WHERE DATE(date) > '2017-01-01'")
-
+    # Format the data into a string
     data = ""
     for row in query.fetchall():
         row = list(row)
@@ -109,7 +111,7 @@ def twitter_data(agg_type):
     with app.open_resource('static/Resources/twitter_data.json') as f:
         df = pd.read_json(f)
 
-    return "Hello"
+    return ""
 
 
 if __name__ == '__main__':
