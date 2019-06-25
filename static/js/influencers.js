@@ -6,7 +6,7 @@ var svg = d3
     .append('svg')
     .attr('height', height)
     .attr('width', width)
-    .classed('svg', true)
+    .classed('svg_main', true)
     .append('g')
     .attr('transform', 'translate(0,0)')
 
@@ -85,7 +85,7 @@ d3.csv('/static/Resources/Influencers.csv').then(function(datapoints) {
             .style("left", (d3.mouse(this)[0] + 70) + "px")
             .style("top", (d3.mouse(this)[1] + 70) + "px")
             .style("display", "block")
-            .html('<div class="tooltip-content"><span class="name">' + d.name + '</span><div class="info">' + d.info + '</div>')
+            .html('<div class="tooltip-content"><span class="names">' + d.name + '</span><div class="info">' + d.info + '</div>')
     }
 
     var moveTooltip = function (d) {
@@ -152,7 +152,7 @@ d3.csv('/static/Resources/Influencers.csv').then(function(datapoints) {
         });
 
     d3.select('#combine').on('click', function () {
-        d3.select('.chart .svg')
+        d3.select('.chart .svg_main')
             .classed("combine", true)
             .classed("preferred", false)
             .classed("location", false)
@@ -165,7 +165,7 @@ d3.csv('/static/Resources/Influencers.csv').then(function(datapoints) {
     })
 
     d3.select('#preferred_coin').on('click', function () {
-        d3.select('.chart .svg')
+        d3.select('.chart .svg_main')
             .classed("combine", false)
             .classed("preferred", true)
             .classed("location", false)
@@ -178,7 +178,7 @@ d3.csv('/static/Resources/Influencers.csv').then(function(datapoints) {
     })
 
     d3.select('#location').on('click', function () {
-        d3.select('.chart .svg')
+        d3.select('.chart .svg_main')
             .classed("combine", false)
             .classed("preferred", false)
             .classed("location", true)
