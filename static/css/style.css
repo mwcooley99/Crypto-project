@@ -258,8 +258,21 @@ footer{
   border-color: red;
  }
 
-.svg{
-  background-image: url(./Images/map.jpg);   
+.svg.location{
+  background-image: url(../Images/map.jpg);
+}
+
+.svg.combine{
+  background-image: url(../images/allcombine1.jpg); 
+}
+
+svg.preferred{
+  background-image: url(../images/preferred.jpg); 
+}
+
+.black {
+    stroke: black;
+    fill: none;
 }
 
 @keyframes text{

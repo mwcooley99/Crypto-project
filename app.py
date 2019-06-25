@@ -1,21 +1,20 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 from helpers.helpers import myconverter
 
 from datetime import datetime
 
-import json
+import pandas as pd
 
-# from flask_bootstrap import Bootstrap
+import json
 
 import os
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("SQLALCHEMY_DATABASE_URI")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("CLEARDB_DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 
 db = SQLAlchemy(app)
 
@@ -47,23 +46,48 @@ def members():
 
 @app.route("/trend")
 def trend():
-    return render_template("trend.html")
+    # Get the Line graph data
+    headers = ['close', 'date', 'name']
+
+    query = db.engine.execute(
+        "SELECT close, DATE_FORMAT(date, '%Y-%m-%d %T') AS date, name "
+        "FROM top_10_coins "
+        "WHERE DATE(date) > '2017-01-01'")
+    line_data = [dict(zip(headers, row)) for row in query.fetchall()]
+
+    # Get the Bubble Chart data
+    headers = ['name', 'close', 'month', 'date', 'volume']
+
+    query = db.engine.execute(
+        "SELECT name, close, Month(date), DATE_FORMAT(date, '%Y-%m-%d %T') AS date, AVG(volume) "
+        "FROM top_10_coins "
+        "GROUP BY name, Year(date), Month(date) "
+        "HAVING DATE(`date`) > '2017-01-01'")
+
+    bubble_data = [dict(zip(headers, row)) for row in query.fetchall()]
+
+    return render_template("trend.html", line_data=line_data,
+                           bubble_data=bubble_data)
 
 
-@app.route("/crypto_top_10")
-def crypto_top_10():
-    result = db.engine.execute("SHOW columns FROM top_10_coins")
-    headers = [column[0] for column in result.fetchall()]
+@app.route("/twitter_viz")
+def twitter_viz():
+    with app.open_resource('static/Resources/twitter_data.json') as f:
+        df = pd.read_json(f, convert_dates=True)
 
-    query = db.engine.execute("SELECT * "
-                              "FROM top_10_coins "
-                              "WHERE DATE(date) > '2017-01-01'")
-    j = [dict(zip(headers, row)) for row in query.fetchall()]
+    aggs = ['D', 'M', 'Y']
+    data = pd.DataFrame(columns=['user_name', 'text', 'group'])
 
-    with open("data.json", "w") as f:
-        json.dump(j, f, default=myconverter)
+    for agg in aggs:
+        temp = df.groupby(['user_name', pd.Grouper(key='date', freq=agg)]) \
+            .agg({'text': 'count'}).reset_index() \
+            .groupby('user_name').agg({'text': 'mean'}).reset_index()
+        temp['group'] = agg
 
-    return json.dumps(j, default=myconverter)
+        data = data.append(temp)
+
+    return render_template("twitter_viz.html",
+                           data=data.to_dict(orient="records"))
 
 
 @app.route("/data_string")
@@ -79,7 +103,7 @@ def data_string():
     query = db.engine.execute("SELECT * "
                               "FROM top_10_coins "
                               "WHERE DATE(date) > '2017-01-01'")
-
+    # Format the data into a string
     data = ""
     for row in query.fetchall():
         row = list(row)
@@ -92,6 +116,14 @@ def data_string():
     result_string += data
 
     return result_string
+
+
+@app.route("/twitter_data/<agg_type>")
+def twitter_data(agg_type):
+    with app.open_resource('static/Resources/twitter_data.json') as f:
+        df = pd.read_json(f)
+
+    return ""
 
 
 if __name__ == '__main__':

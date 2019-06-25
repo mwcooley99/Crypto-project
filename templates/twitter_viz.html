@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+<script>
+    var twitter_data = {{ data|tojson|safe}};
+</script>
+<script src="{{ url_for('static', filename='js/twitter.js') }}"></script>
+{% endblock %}

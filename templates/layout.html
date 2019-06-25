@@ -10,17 +10,19 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-  
+
   <!--CSS Link-->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-  
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+
+  <!-- API key -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/config.js') }}"></script>
 </head>
 
 <body>
-    <!-- Header -->
-<!--    <div class="header">-->
-<!--        <h1></h1>-->
-<!--    </div>-->
     <!-- Navigation -->
     <div class="navigation">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,9 +40,9 @@
                     Crypto
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{url_for('trend')}}">Overall Trends</a>
-                    <a class="dropdown-item" href="{{url_for('comparison')}}">Crypto Comparisons</a>
-                    <a class="dropdown-item" href="{{url_for('influencers')}}">Influences</a>
+                    <a class="dropdown-item" href="{{url_for('trend')}}">Price Trends</a>
+                    <a class="dropdown-item" href="{{url_for('influencers')}}">Influencers</a>
+                    <a class="dropdown-item" href="{{url_for('comparison')}}">Influencers vs. Price</a>
                   </div>
                 </li>
                 <li class="nav-item">
@@ -61,14 +63,4 @@
         <div class="footer">Copyright &copy; Project 2 Cryptocurrency 2019</div>
     </footer>
 </body>
-
-
-<!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-<!-- API key -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/config.js') }}"></script>
-<!-- Our JS -->
-<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </html>
