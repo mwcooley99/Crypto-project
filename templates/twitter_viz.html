@@ -1,7 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
+
+<div class="jumbotron m-3" style="background-color: white">
+  <h1 class="display-4">Influencer's Tweeting Frequency</h1>
+  <p class="lead" style="color: black">
+      Below you will find the average number of tweets for each of the top 10 Crypto-influencer per day, month and year.
+  </p>
+</div>
+<div class="m-3" id="plot"></div>
+
 <script>
-    var twitter_data = {{ data|tojson|safe}};
+    var graph = {{ graph|safe}};
+    Plotly.newPlot("plot", graph.data, graph.layout, {responsive: true});
 </script>
 <script src="{{ url_for('static', filename='js/twitter.js') }}"></script>
 {% endblock %}
