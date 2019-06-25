@@ -1,13 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
-
 <br>
     <div class = "row">
-      <div class="col-md-3";align="right">
-        <h2 align="left">Search</h2>                 
-           <div align="left">  
-                <input type="text" name="search" id="search" class="form-control" />  
-           </div>  
+      <div class="col-md-3";align="right" class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #17a2b8; border-color: #17a2b8">Enter A Crypto Name
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <input class="form-control" id="myInput" type="text" placeholder="Search..">
+          <li>Bitcoin</li>
+          <li>BitcoinCash</li>
+          <li>BitcoinSv</li>
+          <li>Cardang</li>
+          <li>Dash</li>
+          <li>Eos</li>
+          <li>Ethereum</li>
+          <li>Litcoin</a></li>
+          <li>Monero</li>
+          <li>Stellar</li>
+        </ul>
       </div>
       <div class="col-md-9">
         <button style = "float: right" type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
@@ -21,9 +31,8 @@
       <table style="width: 100%"; id="crypto_table">
       </table>
     </div>
-      
   </div>
-
+<!--table data JS-->
 <script>
   $(document).ready(function(){
     $('#load_data').click(function(){
@@ -61,9 +70,10 @@
   });
 </script>
 
+<!--search button JS-->
 <script>  
     $(document).ready(function(){  
-         $('#search').keyup(function(){  
+         $('#myInput').keyup(function(){  
               search_table($(this).val());  
          });  
          function search_table(value){  
