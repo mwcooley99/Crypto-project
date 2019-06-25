@@ -236,11 +236,14 @@ footer{
   max-height: 400px;
 }
 
-.tooltip{
+/* Influencers css
+____________________________________________________________*/
+
+.tooltip-inf{
   display: none;
+  opacity: 1;
   position: absolute;
   width: 200px;
-  height: 300px;
   padding: 2px;
   font: 11px sans-serif;
   text-align: center;
@@ -248,20 +251,28 @@ footer{
   color: black;
   border: 0;
   border-radius: 10px;
-  border-color: red;
- }
+}
+
+.tooltip-content .names{
+  font-weight: bold;
+}
+.svg_main{
+  background-image: url(../images/cryptocoins.png);  
+}
 
 .svg.location{
-  background-image: url(../Images/map.jpg);
+  background-image: url(../images/map.jpg);
 }
 
 .svg.combine{
   background-image: url(../images/allcombine1.jpg); 
 }
 
-svg.preferred{
+.svg.preferred{
   background-image: url(../images/preferred.jpg); 
 }
+
+/*-----------------------------------------------------*/
 
 .black {
     stroke: black;
