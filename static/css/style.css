@@ -137,8 +137,6 @@ select {
   border-width: 7px;   border-color:rgb(60, 208, 228);   border-style: solid;
 }
 
-
-
 .img {
   margin-top: 50px;
 }
@@ -188,6 +186,15 @@ footer{
     width: 100%;
     padding-top: 5px;
 }
+
+.filters .panel-body {
+  padding: 0;
+}
+
+.filters {
+  margin-top: 10px;
+}
+
 
 @media (max-width: 960px) {
     .navbar-expand-lg navbar-light bg-light {
