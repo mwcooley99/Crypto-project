@@ -1,5 +1,5 @@
 html,body{
-    background-color:rgb(30, 116, 131);
+    background: #0b4371;
     height: 100%;
     padding: 0;
     margin: 0;
@@ -11,19 +11,18 @@ html,body{
   margin-bottom: 30px;
 }
 
-
 .navbar-brand{
     color: white;
     margin-left: 30px; 
     padding: 10px 20px; 
     font-weight: bold; 
-    font-family:'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .table_title {
     font-size: 28px;
     color:white;
-    font-family:'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold; 
     padding-top: 25px;
     padding-left: 15px;
@@ -31,7 +30,7 @@ html,body{
 
 #crypto_table {
   background-color: white;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   position:center;
   padding:0;
 }
@@ -42,7 +41,7 @@ th,tr {
 }
 
 th {
-  background-color: rgb(39, 179, 189);
+  background-color:#0b4371;
   height: 50px;
 }
 
@@ -60,22 +59,21 @@ tr:nth-child(even) {background-color:lightgray;}
 .header {
     padding: 25px;
     text-align: center;
-    background: rgb(30, 116, 131);
+    background: #0b4371;
     color: white;
     font-size: 40px;
-    font-family:'Times New Roman', Times, serif;
+    font-family:Arial, Helvetica, sans-serif;
 }
-
 
 p {
     font-size: 18px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: white;
 }
 
 .subtitle{
   font-size: 20px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: white;
   font-weight: bold; 
 }
@@ -85,7 +83,7 @@ p {
 }
 
 .dropdown-item{
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .box {
@@ -94,14 +92,12 @@ p {
 }
 
 h2{ 
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;  
+    font-family: Arial, Helvetica, sans-serif; 
     color: white;
 }
 
 h3{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 25px; 
+    font-family: Arial, Helvetica, sans-serif;
     margin-top:30px; 
     color: white;
 }
@@ -134,21 +130,17 @@ select {
 .img-circle_pic {
   border-radius: 50%;
   margin-bottom: 80px;
-  border-width: 7px;   border-color:rgb(60, 208, 228);   border-style: solid;
+  border-width: 7px;   border-color:#255f8f;   border-style: solid;
 }
-
-
 
 .img {
   margin-top: 50px;
 }
 ul{
   font-size: 18px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
-
-
 
 .team-section{
   text-align: center;
@@ -175,11 +167,11 @@ ul{
 
 footer{
     background-color:grey;
-    border-top-color:lightseagreen;
+    border-top-color:#255f8f;
     border-top-style: solid;
     border-top-width: 5px;
     color: white;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     text-align: center;
     position: fixed;
@@ -281,7 +273,7 @@ ____________________________________________________________*/
 
 @keyframes text{
   0%{
-    color:rgb(30, 116, 131);
+    color:#0b487a;
     margin-bottom: -40px;
   }
   30%{
