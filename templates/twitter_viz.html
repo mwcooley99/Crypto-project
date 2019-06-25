@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
+
+<div class="mt-5" id="plot"></div>
 <script>
-    var twitter_data = {{ data|tojson|safe}};
+    var graph = {{ graph|safe}};
+    Plotly.newPlot("plot", graph.data, graph.layout, {responsive: true});
 </script>
 <script src="{{ url_for('static', filename='js/twitter.js') }}"></script>
 {% endblock %}

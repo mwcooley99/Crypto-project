@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 
-from helpers.helpers import myconverter
+from helpers.helpers import myconverter, create_plot
 
 from datetime import datetime
 
@@ -72,22 +72,24 @@ def trend():
 
 @app.route("/twitter_viz")
 def twitter_viz():
-    with app.open_resource('static/Resources/twitter_data.json') as f:
-        df = pd.read_json(f, convert_dates=True)
-
-    aggs = ['D', 'M', 'Y']
-    data = pd.DataFrame(columns=['user_name', 'text', 'group'])
-
-    for agg in aggs:
-        temp = df.groupby(['user_name', pd.Grouper(key='date', freq=agg)]) \
-            .agg({'text': 'count'}).reset_index() \
-            .groupby('user_name').agg({'text': 'mean'}).reset_index()
-        temp['group'] = agg
-
-        data = data.append(temp)
-
+    # with app.open_resource('static/Resources/twitter_data.json') as f:
+    #     df = pd.read_json(f, convert_dates=True)
+    #
+    # aggs = ['D', 'M', 'Y']
+    # data = pd.DataFrame(columns=['user_name', 'text', 'group'])
+    #
+    # for agg in aggs:
+    #     temp = df.groupby(['user_name', pd.Grouper(key='date', freq=agg)]) \
+    #         .agg({'text': 'count'}).reset_index() \
+    #         .groupby('user_name').agg({'text': 'mean'}).reset_index()
+    #     temp['group'] = agg
+    #
+    #     data = data.append(temp)
+    # data.to_pickle('twitter_agg.pkl')
+    data = pd.read_pickle('static/Resources/twitter_agg.pkl')
+    graph = create_plot(data)
     return render_template("twitter_viz.html",
-                           data=data.to_dict(orient="records"))
+                           graph=graph)
 
 
 @app.route("/data_string")
