@@ -2,27 +2,22 @@
 {% block content %}
 <br>
     <div class = "row">
-      <!---<div class="col-md-3";align="right">
-        <h2 align="left">Enter A Crypto Name</h2>                 
-           <div align="left">  
-                <input type="text" name="search" id="search" class="form-control" />  
-           </div>  
-      </div>-->
-      
-      <div class="col-md-3";align="right">
-        <label align="left" style=" font-size:medium; font-family: 'Times New Roman', Times, serif; color:white">Select A Crypto Name:</label>                 
-        <select id="chosen">
-          <option>Bitcoin</option>
-          <option>BitcoinCash</option>
-          <option>BitcoinSv</option>
-          <option>Cardano</option>
-          <option>Dash</option>
-          <option>Eos</option>
-          <option>Ethereum</option>
-          <option>Litcoin</option>
-          <option>Monero</option>
-          <option>Stellar</option>
-        </select>
+      <div class="col-md-3";align="right" class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #17a2b8; border-color: #17a2b8">Enter A Crypto Name
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <input class="form-control" id="myInput" type="text" placeholder="Search..">
+          <li>Bitcoin</li>
+          <li>BitcoinCash</li>
+          <li>BitcoinSv</li>
+          <li>Cardang</li>
+          <li>Dash</li>
+          <li>Eos</li>
+          <li>Ethereum</li>
+          <li>Litcoin</a></li>
+          <li>Monero</li>
+          <li>Stellar</li>
+        </ul>
       </div>
       <div class="col-md-9">
         <button style = "float: right" type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
@@ -36,7 +31,6 @@
       <table style="width: 100%"; id="crypto_table">
       </table>
     </div>
-      
   </div>
 <!--table data JS-->
 <script>
@@ -76,36 +70,10 @@
   });
 </script>
 
-<!---<script>  
-    $(document).ready(function(){  
-         $('#search').keyup(function(){  
-              search_table($(this).val());  
-         });  
-         function search_table(value){  
-              $('#crypto_table tr').each(function(){  
-                   var found = 'false';  
-                   $(this).each(function(){  
-                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
-                        {  
-                             found = 'true';  
-                        }  
-                   });  
-                   if(found == 'true')  
-                   {  
-                        $(this).show();  
-                   }  
-                   else  
-                   {  
-                        $(this).hide();  
-                   }  
-              });  
-         }  
-    });  
-</script>--> 
 <!--search button JS-->
 <script>  
     $(document).ready(function(){  
-         $('#chosen').keyup(function(){  
+         $('#myInput').keyup(function(){  
               search_table($(this).val());  
          });  
          function search_table(value){  
