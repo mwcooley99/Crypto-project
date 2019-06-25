@@ -260,15 +260,15 @@ ____________________________________________________________*/
   background-image: url(../images/cryptocoins.png);  
 }
 
-.svg.location{
+.svg_main.location{
   background-image: url(../images/map.jpg);
 }
 
-.svg.combine{
+.svg_main.combine{
   background-image: url(../images/allcombine1.jpg); 
 }
 
-.svg.preferred{
+.svg_main.preferred{
   background-image: url(../images/preferred.jpg); 
 }
 
