@@ -54,9 +54,7 @@ def members():
 def trend():
     # Make connection
     connection = db.engine.connect()
-
     # Get the Line graph data
-    print(db)
     headers = ['close', 'date', 'name']
 
     query = connection.execute(
