@@ -13,7 +13,9 @@ import os
 
 app = Flask(__name__)
 
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://bbae461e614197:17d2b43896e6681@us-cdbr-iron-east-02.cleardb.net/heroku_a406bf74b9befa3"
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("CLEARDB_DATABASE_URL")
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -44,16 +46,21 @@ def members():
     return render_template("members.html")
 
 
+# heroku config:set DATABASE_URL='mysql://bbae461e614197:f1155f19@us-cdbr-iron-east-02.cleardb.net/heroku_a406bf74b9befa3?reconnect=true'
+
+# mysql+mysqlconnector://bbae461e614197:f1155f19@us-cdbr-iron-east-02.cleardb.net/heroku_a406bf74b9befa3
+
 @app.route("/trend")
 def trend():
     # Make connection
     connection = db.engine.connect()
 
     # Get the Line graph data
+    print(db)
     headers = ['close', 'date', 'name']
 
     query = connection.execute(
-        "SELECT close, DATE_FORMAT(date, '%Y-%m-%d %T') AS date, name "
+        "SELECT close, DATE_FORMAT(date, '%%Y-%%m-%%d %%T') AS date, name "
         "FROM top_10_coins "
         "WHERE DATE(date) > '2017-01-01'")
     line_data = [dict(zip(headers, row)) for row in query.fetchall()]
@@ -62,7 +69,7 @@ def trend():
     headers = ['name', 'close', 'month', 'date', 'volume']
 
     query = connection.execute(
-        "SELECT name, close, Month(date), DATE_FORMAT(date, '%Y-%m-%d %T') AS date, AVG(volume) "
+        "SELECT name, close, Month(date), DATE_FORMAT(date, '%%Y-%%m-%%d %%T') AS date, AVG(volume) "
         "FROM top_10_coins "
         "GROUP BY name, Year(date), Month(date) "
         "HAVING DATE(`date`) > '2017-01-01'")
