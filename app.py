@@ -46,11 +46,14 @@ def members():
 
 @app.route("/trend")
 def trend():
+    # Make connection
+    connection = db.engine.connect()
+
     # Get the Line graph data
     headers = ['close', 'date', 'name']
 
-    query = db.engine.execute(
-        "SELECT close, DATE_FORMAT(date, '%Y-%m-%d %T') AS date, name "
+    query = connection.execute(
+        "SELECT close, DATE_FORMAT(date, '%%Y-%%m-%%d %%T') AS date, name "
         "FROM top_10_coins "
         "WHERE DATE(date) > '2017-01-01'")
     line_data = [dict(zip(headers, row)) for row in query.fetchall()]
@@ -58,13 +61,16 @@ def trend():
     # Get the Bubble Chart data
     headers = ['name', 'close', 'month', 'date', 'volume']
 
-    query = db.engine.execute(
-        "SELECT name, close, Month(date), DATE_FORMAT(date, '%Y-%m-%d %T') AS date, AVG(volume) "
+    query = connection.execute(
+        "SELECT name, close, Month(date), DATE_FORMAT(date, '%%Y-%%m-%%d %%T') AS date, AVG(volume) "
         "FROM top_10_coins "
         "GROUP BY name, Year(date), Month(date) "
         "HAVING DATE(`date`) > '2017-01-01'")
 
     bubble_data = [dict(zip(headers, row)) for row in query.fetchall()]
+
+    # Close connection
+    connection.close()
 
     return render_template("trend.html", line_data=line_data,
                            bubble_data=bubble_data)
@@ -72,20 +78,6 @@ def trend():
 
 @app.route("/twitter_viz")
 def twitter_viz():
-    # with app.open_resource('static/Resources/twitter_data.json') as f:
-    #     df = pd.read_json(f, convert_dates=True)
-    #
-    # aggs = ['D', 'M', 'Y']
-    # data = pd.DataFrame(columns=['user_name', 'text', 'group'])
-    #
-    # for agg in aggs:
-    #     temp = df.groupby(['user_name', pd.Grouper(key='date', freq=agg)]) \
-    #         .agg({'text': 'count'}).reset_index() \
-    #         .groupby('user_name').agg({'text': 'mean'}).reset_index()
-    #     temp['group'] = agg
-    #
-    #     data = data.append(temp)
-    # data.to_pickle('twitter_agg.pkl')
     data = pd.read_pickle('static/Resources/twitter_agg.pkl')
     graph = create_plot(data)
     return render_template("twitter_viz.html",
