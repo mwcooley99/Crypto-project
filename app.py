@@ -89,12 +89,19 @@ def data_string():
     delimter = ","
     end_of_line = "\n"
 
-    result = db.engine.execute("SHOW columns FROM top_10_coins")
+    connection = db.engine.connect()
+
+    result = connection.execute("SHOW columns FROM top_10_coins")
     headers = [column[0] for column in result.fetchall()]
+
+    connection.close()
+
     result_string = delimter.join(headers)
     result_string += end_of_line
 
-    query = db.engine.execute("SELECT * "
+    connection = db.engine.connect()
+
+    query = connection.execute("SELECT * "
                               "FROM top_10_coins "
                               "WHERE DATE(date) > '2017-01-01'")
     # Format the data into a string
@@ -106,6 +113,8 @@ def data_string():
         row = [str(i) for i in row]
         data += delimter.join(row)
         data += "\n"
+
+    connection.close()
 
     result_string += data
 
