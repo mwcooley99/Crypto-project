@@ -13,7 +13,6 @@ import os
 
 app = Flask(__name__)
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://bbae461e614197:17d2b43896e6681@us-cdbr-iron-east-02.cleardb.net/heroku_a406bf74b9befa3"
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("CLEARDB_DATABASE_URL")
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -45,10 +44,6 @@ def influencers():
 def members():
     return render_template("members.html")
 
-
-# heroku config:set DATABASE_URL='mysql://bbae461e614197:f1155f19@us-cdbr-iron-east-02.cleardb.net/heroku_a406bf74b9befa3?reconnect=true'
-
-# mysql+mysqlconnector://bbae461e614197:f1155f19@us-cdbr-iron-east-02.cleardb.net/heroku_a406bf74b9befa3
 
 @app.route("/trend")
 def trend():
