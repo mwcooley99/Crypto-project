@@ -6,7 +6,7 @@ function idled() {
 
 var coins = {
     "Bitcoin": {
-        color: "black",
+        color: "indigo",
         dailyData: [],
         monthlyData: [],
     },
@@ -51,7 +51,7 @@ var coins = {
         monthlyData: [],
     },
     "Dash": {
-        color: "sandybrown",
+        color: "pink",
         dailyData: [],
         monthlyData: [],
     }
@@ -110,7 +110,8 @@ function renderPriceChart(data) {
         .select(".price")
         .append("svg")
         .attr("width", svgWidth)
-        .attr("height", svgHeight);
+        .attr("height", svgHeight)
+        .classed('svg_trend', true);
 
     var lineChart = svg.append("g")
         .attr("transform", `translate(${margin.left + 50}, ${margin.top})`);
@@ -279,7 +280,8 @@ function renderVolumeChart(data) {
         .select(".volume")
         .append("svg")
         .attr("width", svgWidth)
-        .attr("height", svgHeight);
+        .attr("height", svgHeight)
+        .classed('svg_trend', true);
 
     var volumeChart = svg.append("g")
         .attr("transform", `translate(${margin.left + 50}, ${margin.top})`);//+height

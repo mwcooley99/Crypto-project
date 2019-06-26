@@ -14,6 +14,7 @@ import os
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("CLEARDB_DATABASE_URL")
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -48,12 +49,11 @@ def members():
 def trend():
     # Make connection
     connection = db.engine.connect()
-
     # Get the Line graph data
     headers = ['close', 'date', 'name']
 
     query = connection.execute(
-        "SELECT close, DATE_FORMAT(date, '%Y-%m-%d %T') AS date, name "
+        "SELECT close, DATE_FORMAT(date, '%%Y-%%m-%%d %%T') AS date, name "
         "FROM top_10_coins "
         "WHERE DATE(date) > '2017-01-01'")
     line_data = [dict(zip(headers, row)) for row in query.fetchall()]
@@ -62,7 +62,7 @@ def trend():
     headers = ['name', 'close', 'month', 'date', 'volume']
 
     query = connection.execute(
-        "SELECT name, close, Month(date), DATE_FORMAT(date, '%Y-%m-%d %T') AS date, AVG(volume) "
+        "SELECT name, close, Month(date), DATE_FORMAT(date, '%%Y-%%m-%%d %%T') AS date, AVG(volume) "
         "FROM top_10_coins "
         "GROUP BY name, Year(date), Month(date) "
         "HAVING DATE(`date`) > '2017-01-01'")

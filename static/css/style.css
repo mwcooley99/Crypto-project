@@ -278,6 +278,9 @@ background-image: url(../images/preferred.jpg);
 }
 
 /*-----------------------------------------------------*/
+.svg_trend{
+  background-color: white;
+}
 
 .black {
   stroke: black;
