@@ -14,20 +14,21 @@ def myconverter(o):
 def create_plot(df):
     data = []
 
-    for group in df['group'].unique():
-        df_temp = df.loc[df['group'] == group]
+    for group in df['user_name'].unique():
+        df_temp = df.loc[df['user_name'] == group]
 
         trace = go.Bar(
-            x=df_temp['user_name'],
+            x=df_temp['date'],
             y=df_temp['text'],
             name=group
         )
         data.append(trace)
 
     layout = go.Layout(
-        barmode='stack',
+        barmode='group',
         title="Average Number of Tweets",
         xaxis=dict(tickangle=-45),
+        height=700,
         margin=go.layout.Margin(
             l=50,
             r=50,

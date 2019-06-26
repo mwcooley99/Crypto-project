@@ -78,7 +78,7 @@ def trend():
 
 @app.route("/twitter_viz")
 def twitter_viz():
-    data = pd.read_pickle('static/Resources/twitter_agg.pkl')
+    data = pd.read_pickle('static/Resources/twitter_month.pkl')
     graph = create_plot(data)
     return render_template("twitter_viz.html",
                            graph=graph)
