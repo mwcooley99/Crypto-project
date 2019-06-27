@@ -1,13 +1,12 @@
 from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 
-from helpers.helpers import myconverter, create_plot
+from helpers.helpers import create_plot
 
 from datetime import datetime
 
 import pandas as pd
 
-import json
 
 import os
 
@@ -102,8 +101,8 @@ def data_string():
     connection = db.engine.connect()
 
     query = connection.execute("SELECT * "
-                              "FROM top_10_coins "
-                              "WHERE DATE(date) > '2017-01-01'")
+                               "FROM top_10_coins "
+                               "WHERE DATE(date) > '2017-01-01'")
     # Format the data into a string
     data = ""
     for row in query.fetchall():
