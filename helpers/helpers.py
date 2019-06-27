@@ -1,4 +1,5 @@
 import datetime
+import numpy as np
 
 import plotly
 import plotly.graph_objs as go
@@ -14,8 +15,8 @@ def myconverter(o):
 def create_plot(df):
     data = []
 
-    for group in df['user_name'].unique():
-        df_temp = df.loc[df['user_name'] == group]
+    for group in np.sort(df['name'].unique()):
+        df_temp = df.loc[df['name'] == group]
 
         trace = go.Bar(
             x=df_temp['date'],
