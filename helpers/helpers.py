@@ -1,4 +1,3 @@
-import datetime
 import numpy as np
 
 import plotly
@@ -7,12 +6,12 @@ import plotly.graph_objs as go
 import json
 
 
-def myconverter(o):
-    if isinstance(o, datetime.datetime):
-        return o.__str__()
-
-
 def create_plot(df):
+    '''
+    Creates the bar graph for the twitter viz page
+    :param df: DataFrame of Influencer Twitter data
+    :return: json of plotly graph
+    '''
     data = []
 
     for group in np.sort(df['name'].unique()):
