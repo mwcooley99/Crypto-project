@@ -59,7 +59,7 @@ var coins = {
 
 // Format the data and convert to numerical and date values
 
-var parseTime = d3.timeParse("%%Y-%%m-%%d 00:00:00");
+var parseTime = d3.timeParse("%Y-%m-%d 00:00:00");
 
 function formatLineData(data) {
     data.forEach(function (data) {
