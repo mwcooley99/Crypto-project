@@ -48,12 +48,12 @@ def members():
 def trend():
     # Make connection
     connection = db.engine.connect()
-    print(connection)
+
     # Get the Line graph data
     headers = ['close', 'date', 'name']
 
     query = connection.execute(
-        "SELECT close, DATE_FORMAT(date, '%%Y-%%m-%%d %%T') AS date, name "
+        "SELECT close, DATE_FORMAT(date, '%Y-%m-%d %T') AS date, name "
         "FROM top_10_coins "
         "WHERE DATE(date) > '2017-01-01'")
     line_data = [dict(zip(headers, row)) for row in query.fetchall()]
@@ -62,7 +62,7 @@ def trend():
     headers = ['name', 'close', 'month', 'date', 'volume']
 
     query = connection.execute(
-        "SELECT name, close, Month(date), DATE_FORMAT(date, '%%Y-%%m-%%d %%T') AS date, AVG(volume) "
+        "SELECT name, close, Month(date), DATE_FORMAT(date, '%Y-%m-%d %T') AS date, AVG(volume) "
         "FROM top_10_coins "
         "GROUP BY name, Year(date), Month(date) "
         "HAVING DATE(`date`) > '2017-01-01'")
@@ -109,7 +109,7 @@ def data_string():
     for row in query.fetchall():
         row = list(row)
 
-        row[2] = datetime.strftime(row[2], "%%Y-%%m-%%d")
+        row[2] = datetime.strftime(row[2], "%Y-%m-%d")
         row = [str(i) for i in row]
         data += delimter.join(row)
         data += "\n"
